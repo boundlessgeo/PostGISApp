@@ -1,9 +1,9 @@
 # VERSION numbers
 POSTGIS_VERSION=2.1.0
 POSTGIS_MAJOR_VERSION=2.1
-POSTGRES_VERSION=9.2.4
-GDAL_VERSION=1.10.0
-GEOS_VERSION=3.3.8
+POSTGRES_VERSION=9.3rc1
+GDAL_VERSION=1.9.2
+GEOS_VERSION=3.4.0
 JPEG_VERSION=8d
 LIBEDIT_VERSION=20130611-3.1
 LIBJASPER_VERSION=1.900.1
@@ -12,7 +12,6 @@ LIBXML2_VERSION=2.9.1
 OPENSSL_VERSION=1.0.1e
 PROJ_VERSION=4.8.0
 DATUMGRID_VERSION=1.5
-V8_VERSION=3.18
 JSONC_VERSION=0.10
 LIBTIFF_VERSION=4.0.3
 
@@ -24,8 +23,8 @@ PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: postgresql postgis plv8
-clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-plv8 clean-libjpeg clean-libjasper clean-libgeos clean-libtiff
+all: postgresql postgis
+clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libjpeg clean-libjasper clean-libgeos clean-libtiff
 
 #########################
 ###### PostgreSQL #######
@@ -248,7 +247,7 @@ gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
 	touch $@	
 
 gdal-${GDAL_VERSION}.tar.gz:
-	$(CURL) "http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz"
+	$(CURL) "http://download.osgeo.org/gdal/gdal-${GDAL_VERSION}.tar.gz"
 
 clean-libgdal:
 	rm -Rf gdal-$(GDAL_VERSION)
@@ -356,33 +355,3 @@ postgis-${POSTGIS_VERSION}.tar.gz:
 
 clean-postgis:
 	rm -Rf postgis-${POSTGIS_VERSION}
-
-
-##########################
-######## PLV8 ############
-##########################
-
-plv8: $(PREFIX)/lib/plv8.so
-
-$(PREFIX)/lib/plv8.so: plv8js/Makefile $(PREFIX)/lib/libv8.dylib
-	export PGHOME="$(PREFIX)"; export CC=clang; export CXX=clang++; export V8_SRCDIR="$(CURDIR)/v8-${V8_VERSION}"; make -C plv8js install
-	/usr/bin/install_name_tool -change "/usr/local/lib/libv8.dylib" "@loader_path/../lib/libv8.dylib" "$(PREFIX)/lib/plv8.so"
-
-
-plv8js/Makefile:
-	/usr/bin/git clone "https://code.google.com/p/plv8js/" -q
-	touch $@
-
-$(PREFIX)/lib/libv8.dylib: v8-${V8_VERSION}/out/x64.release/libv8.dylib
-	cp v8-${V8_VERSION}/out/x64.release/libv8.dylib $(PREFIX)/lib/libv8.dylib
-
-v8-${V8_VERSION}/out/x64.release/libv8.dylib: v8-${V8_VERSION}/Makefile
-	export CC=clang; export CXX=clang++; export GYP_DEFINES="clang=1"; make -C v8-${V8_VERSION} dependencies
-	export CC=clang; export CXX=clang++; export GYP_DEFINES="clang=1"; make -C v8-${V8_VERSION} library=shared x64.release
-
-v8-${V8_VERSION}/Makefile:
-	svn export --force "http://v8.googlecode.com/svn/branches/$(V8_VERSION)/" "v8-$(V8_VERSION)"
-	touch $@
-
-clean-plv8:
-	rm -Rf plv8js v8-${V8_VERSION}
