@@ -14,6 +14,10 @@ PROJ_VERSION=4.8.0
 DATUMGRID_VERSION=1.5
 JSONC_VERSION=0.10
 LIBTIFF_VERSION=4.0.3
+LIBLAS_VERSION=1.7.0
+LASZIP_VERSION=2.2.0
+GHT_VERSION=0.1.0
+POINTCLOUD_VERSION=0.1.0
 
 #path configuration
 PREFIX=$(CURDIR)/../Postgres/Vendor/postgres
@@ -23,7 +27,7 @@ PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: postgresql postgis
+all: postgresql postgis pointcloud
 clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libjpeg clean-libjasper clean-libgeos clean-libtiff
 
 #########################
@@ -355,3 +359,99 @@ postgis-${POSTGIS_VERSION}.tar.gz:
 
 clean-postgis:
 	rm -Rf postgis-${POSTGIS_VERSION}
+
+#########################
+###### PointCloud #######
+#########################
+
+#depends on postgresql, libxml2, GHT
+
+pointcloud: $(PREFIX)/lib/pointcloud.so
+
+$(PREFIX)/lib/pointcloud.so: pointcloud-${POINTCLOUD_VERSION}/GNUMakefile
+	make -C pointcloud-${POINTCLOUD_VERSION}
+	make -C pointcloud-${POINTCLOUD_VERSION} install
+
+pointcloud-${POINTCLOUD_VERSION}/GNUMakefile: pointcloud-${POINTCLOUD_VERSION}/autogen.sh $(PREFIX)/lib/libght.${GHT_VERSION}.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libxml2.dylib
+	cd pointcloud-${POINTCLOUD_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-libght=${PREFIX}
+	touch $@
+
+pointcloud-${POINTCLOUD_VERSION}/autogen.sh: pointcloud-${POINTCLOUD_VERSION}.tar.gz
+	$(TAR) $<
+	touch $@
+
+pointcloud-${POINTCLOUD_VERSION}.tar.gz:
+	$(CURL) "https://github.com/pramsey/pointcloud/archive/v${POINTCLOUD_VERSION}.tar.gz"
+	mv v${POINTCLOUD_VERSION}.tar.gz pointcloud-${POINTCLOUD_VERSION}.tar.gz
+
+clean-pointcloud:
+	rm -Rf pointcloud-${POINTCLOUD_VERSION}
+
+#########################
+###### GHT ##############
+#########################
+
+ght: $(PREFIX)/lib/libght.${GHT_VERSION}.dylib
+
+$(PREFIX)/lib/libght.${GHT_VERSION}.dylib: libght-${GHT_VERSION}/Makefile
+	make -C libght-${GHT_VERSION} install
+
+libght-${GHT_VERSION}/Makefile: libght-${GHT_VERSION}/CMakeLists.txt $(PREFIX)/lib/liblas.${LIBLAS_VERSION}.dylib
+	cd libght-${GHT_VERSION} && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)"
+
+libght-${GHT_VERSION}/CMakeLists.txt: libght-${GHT_VERSION}.tar.gz
+	$(TAR) libght-${GHT_VERSION}.tar.gz
+	touch $@
+
+libght-${GHT_VERSION}.tar.gz:
+	$(CURL) "https://github.com/pramsey/libght/archive/v${GHT_VERSION}.tar.gz"
+	mv v${GHT_VERSION}.tar.gz libght-${GHT_VERSION}.tar.gz
+
+clean-ght:
+	rm -Rf libght-${GHT_VERSION}
+
+#########################
+###### LibLAS ###########
+#########################
+
+liblas: $(PREFIX)/lib/liblas.${LIBLAS_VERSION}.dylib
+
+$(PREFIX)/lib/liblas.${LIBLAS_VERSION}.dylib: libLAS-${LIBLAS_VERSION}/Makefile
+	make -C libLAS-${LIBLAS_VERSION} install
+
+libLAS-${LIBLAS_VERSION}/Makefile: libLAS-${LIBLAS_VERSION}/CMakeLists.txt $(PREFIX)/lib/liblaszip.dylib
+	cd libLAS-${LIBLAS_VERSION} && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" \
+	-DWITH_LASZIP=yes -DLASZIP_INCLUDE_DIR=../laszip-src-2.2.0/include/ -DLASZIP_LIBRARY=$(PREFIX)/lib/liblaszip.dylib
+	
+
+libLAS-${LIBLAS_VERSION}/CMakeLists.txt: libLAS-${LIBLAS_VERSION}.tar.gz
+	$(TAR) libLAS-${LIBLAS_VERSION}.tar.gz
+	touch $@
+
+libLAS-${LIBLAS_VERSION}.tar.gz:
+	$(CURL) "http://download.osgeo.org/liblas/libLAS-${LIBLAS_VERSION}.tar.gz"
+
+clean-liblas:
+	rm -Rf libLAS-${LIBLAS_VERSION}.tar.gz
+
+#########################
+###### LASzip ###########
+#########################
+
+laszip: $(PREFIX)/lib/liblaszip.dylib
+
+$(PREFIX)/lib/liblaszip.dylib: laszip-src-${LASZIP_VERSION}/Makefile
+	make -C laszip-src-${LASZIP_VERSION} install
+
+laszip-src-${LASZIP_VERSION}/Makefile: laszip-src-${LASZIP_VERSION}/configure
+	cd laszip-src-${LASZIP_VERSION} && ./configure --prefix="$(PREFIX)"
+
+laszip-src-${LASZIP_VERSION}/configure: laszip-src-${LASZIP_VERSION}.tar.gz
+	$(TAR) laszip-src-${LASZIP_VERSION}.tar.gz
+	touch $@
+
+laszip-src-${LASZIP_VERSION}.tar.gz:
+	$(CURL) "https://github.com/LASzip/LASzip/releases/download/v${LASZIP_VERSION}/laszip-src-${LASZIP_VERSION}.tar.gz"
+
+clean-laszip:
+	rm -Rf laszip-src-${LASZIP_VERSION}.tar.gz
