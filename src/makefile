@@ -4,9 +4,7 @@ POSTGIS_MAJOR_VERSION=2.1
 POSTGRES_VERSION=9.3rc1
 GDAL_VERSION=1.9.2
 GEOS_VERSION=3.4.0
-JPEG_VERSION=8d
 LIBEDIT_VERSION=20130611-3.1
-LIBJASPER_VERSION=1.900.1
 LIBUUID_VERSION=1.6.2
 LIBXML2_VERSION=2.9.1
 OPENSSL_VERSION=1.0.1e
@@ -28,7 +26,7 @@ CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
 all: postgresql postgis pointcloud
-clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libjpeg clean-libjasper clean-libgeos clean-libtiff
+clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libgeos clean-libtiff
 
 #########################
 ###### PostgreSQL #######
@@ -157,53 +155,6 @@ libedit-$(LIBEDIT_VERSION).tar.gz:
 clean-libedit:
 	rm -Rf "libedit-$(LIBEDIT_VERSION)"
 
-
-#########################
-####### LibJasper #######
-#########################
-
-libjasper: $(PREFIX)/lib/libjasper.dylib
-
-$(PREFIX)/lib/libjasper.dylib: jasper-${LIBJASPER_VERSION}.uuid/Makefile
-	make -C jasper-${LIBJASPER_VERSION}.uuid install
-
-jasper-${LIBJASPER_VERSION}.uuid/Makefile: jasper-${LIBJASPER_VERSION}.uuid/configure
-	cd jasper-${LIBJASPER_VERSION}.uuid && ./configure --prefix="$(PREFIX)" --disable-debug --disable-dependency-tracking --enable-shared --enable-dynamic
-
-
-jasper-${LIBJASPER_VERSION}.uuid/configure: jasper-$(LIBJASPER_VERSION).uuid.tar.gz
-	$(TAR) "jasper-$(LIBJASPER_VERSION).uuid.tar.gz"
-	touch $@
-
-jasper-$(LIBJASPER_VERSION).uuid.tar.gz:
-	$(CURL) "http://download.osgeo.org/gdal/jasper-$(LIBJASPER_VERSION).uuid.tar.gz"
-
-clean-libjasper:
-	rm -Rf jasper-${LIBJASPER_VERSION}.uuid
-
-
-#########################
-#######  libjpeg  #######
-#########################
-
-libjpeg: $(PREFIX)/lib/libjpeg.dylib
-
-$(PREFIX)/lib/libjpeg.dylib: jpeg-$(JPEG_VERSION)/Makefile
-	make -C jpeg-$(JPEG_VERSION) install
-
-jpeg-$(JPEG_VERSION)/Makefile: jpeg-$(JPEG_VERSION)/configure
-	cd jpeg-$(JPEG_VERSION) && ./configure --prefix="$(PREFIX)" --disable-dependency-tracking
-
-jpeg-$(JPEG_VERSION)/configure: jpegsrc.v$(JPEG_VERSION).tar.gz
-	$(TAR) jpegsrc.v$(JPEG_VERSION).tar.gz
-	touch $@
-
-jpegsrc.v$(JPEG_VERSION).tar.gz:
-	$(CURL) "http://www.ijg.org/files/jpegsrc.v$(JPEG_VERSION).tar.gz"
-
-clean-libjpeg:
-	rm -Rf jpeg-$(JPEG_VERSION)
-
 #########################
 #######  libgeos  #######
 #########################
@@ -235,15 +186,15 @@ clean-libgeos:
 #######  libgdal  #######
 #########################
 
-# Depends on libproj, libjasper, postgresql, libjpeg, libtiff
+# Depends on libproj, postgresql, libtiff
 
 libgdal: $(PREFIX)/lib/libgdal.dylib
 
 $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	make -C gdal-$(GDAL_VERSION) install
 
-gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/libproj.dylib $(PREFIX)/lib/libjasper.dylib  $(PREFIX)/lib/libjpeg.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libtiff.dylib $(PREFIX)/lib/libgeos.dylib
-	cd gdal-$(GDAL_VERSION) && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pg="$(PREFIX)/bin/pg_config"  --with-jpeg="$(PREFIX)" --with-jasper="$(PREFIX)"
+gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/libproj.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libtiff.dylib $(PREFIX)/lib/libgeos.dylib
+	cd gdal-$(GDAL_VERSION) && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pg="$(PREFIX)/bin/pg_config"
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
@@ -333,7 +284,7 @@ clean-libtiff:
 ###### PostGIS ##########
 #########################
 
-#depends on libgdal, libgeos, libjpeg, postgresql, jsonc
+#depends on libgdal, libgeos, postgresql, jsonc
 
 postgis: $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so $(PREFIX)/lib/liblwgeom.dylib
 
@@ -345,7 +296,7 @@ $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so: postgis-${POSTGIS_VERSION}/GN
 	make -C postgis-${POSTGIS_VERSION}
 	make -C postgis-${POSTGIS_VERSION} install
 
-postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/lib/libjpeg.dylib $(PREFIX)/bin/psql $(PREFIX)/include/json/json_object_iterator.h
+postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/include/json/json_object_iterator.h
 	cd postgis-${POSTGIS_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-geosconfig="$(PREFIX)/bin/geos-config" --with-projdir="$(PREFIX)" --with-gdaldir="$(PREFIX)" --with-jsondir="$(PREFIX)"
 	/usr/bin/sed -i -e 's#/usr/local$$#"$(PREFIX)"#g' postgis-${POSTGIS_VERSION}/liblwgeom/Makefile
 	touch $@
@@ -372,8 +323,8 @@ $(PREFIX)/lib/pointcloud.so: pointcloud-${POINTCLOUD_VERSION}/GNUMakefile
 	make -C pointcloud-${POINTCLOUD_VERSION}
 	make -C pointcloud-${POINTCLOUD_VERSION} install
 
-pointcloud-${POINTCLOUD_VERSION}/GNUMakefile: pointcloud-${POINTCLOUD_VERSION}/autogen.sh $(PREFIX)/lib/libght.${GHT_VERSION}.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libxml2.dylib
-	cd pointcloud-${POINTCLOUD_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-libght=${PREFIX}
+pointcloud-${POINTCLOUD_VERSION}/GNUMakefile: pointcloud-${POINTCLOUD_VERSION}/autogen.sh $(PREFIX)/bin/psql $(PREFIX)/lib/libxml2.dylib #$(PREFIX)/lib/libght.${GHT_VERSION}.dylib
+	cd pointcloud-${POINTCLOUD_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" #--with-libght=${PREFIX}
 	touch $@
 
 pointcloud-${POINTCLOUD_VERSION}/autogen.sh: pointcloud-${POINTCLOUD_VERSION}.tar.gz
