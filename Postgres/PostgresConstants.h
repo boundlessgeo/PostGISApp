@@ -23,8 +23,8 @@
 // "AS IS" BASIS, AND THE UNIVERSITY OF CALIFORNIA HAS NO OBLIGATIONS TO
 // PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 
-static NSString * const kPostgresAppWebsiteURLString = @"http://postgresapp.com/documentation";
+static NSString * const kPostgresAppWebsiteURLString = @"http://suite.opengeo.org/opengeo-docs/postgis/index.html";
 static NSUInteger const kPostgresAppDefaultPort = 5432;
 
-static NSString * const kPostgresFirstLaunchPreferenceKey = @"com.heroku.postgres.preference.first-launch";
-static NSString * const kPostgresAutomaticallyOpenDocumentationPreferenceKey = @"com.heroku.postgres.preference.open-documentation-at-start";
+static NSString * const kPostgresFirstLaunchPreferenceKey = @"com.boundlessgeo.postgres.preference.first-launch";
+static NSString * const kPostgresAutomaticallyOpenDocumentationPreferenceKey = @"com.boundlessgeo.postgres.preference.open-documentation-at-start";

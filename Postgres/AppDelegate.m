@@ -37,7 +37,7 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     BOOL flag = NO;
     NSArray *jobs = (__bridge NSArray *)SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
     for (NSDictionary *job in jobs) {
-        if ([[job valueForKey:@"Label"] isEqualToString:@"com.heroku.PostgresHelper"]) {
+        if ([[job valueForKey:@"Label"] isEqualToString:@"com.boundlessgeo.PostgresHelper"]) {
             flag = YES;
         }
     }
@@ -152,7 +152,7 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
         NSLog(@"LSRegisterURL Failed");
     }
     
-    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.heroku.PostgresHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
+    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.PostgresHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
         NSLog(@"SMLoginItemSetEnabled Failed");
     }
 }
