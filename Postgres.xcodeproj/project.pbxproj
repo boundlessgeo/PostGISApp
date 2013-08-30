@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0710E97D1639ADD7006D7FB2 /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0710E9791639ADD7006D7FB2 /* status-off@2x.png */; };
-		0710E97E1639ADD7006D7FB2 /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0710E9791639ADD7006D7FB2 /* status-off@2x.png */; };
 		0710E97F1639ADD7006D7FB2 /* status-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0710E97B1639ADD7006D7FB2 /* status-on@2x.png */; };
-		0710E9801639ADD7006D7FB2 /* status-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0710E97B1639ADD7006D7FB2 /* status-on@2x.png */; };
 		F81386711538E586003A83F9 /* PostgresConnectionURLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F81386701538E586003A83F9 /* PostgresConnectionURLValueTransformer.m */; };
 		F87A426F153AB60C00456130 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
 		F87A4275153AB60C00456130 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F87A4273153AB60C00456130 /* InfoPlist.strings */; };
@@ -18,9 +16,7 @@
 		F87A427E153AB60C00456130 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F87A427D153AB60C00456130 /* AppDelegate.m */; };
 		F87A4281153AB60C00456130 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F87A427F153AB60C00456130 /* MainMenu.xib */; };
 		F883D60E15B5CEB60017F83A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F883D60C15B5CEB60017F83A /* WelcomeWindowController.m */; };
-		F883D60F15B5CEB60017F83A /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F883D60C15B5CEB60017F83A /* WelcomeWindowController.m */; };
 		F883D61015B5CEB60017F83A /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F883D60D15B5CEB60017F83A /* WelcomeWindow.xib */; };
-		F883D61115B5CEB60017F83A /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F883D60D15B5CEB60017F83A /* WelcomeWindow.xib */; };
 		F884C8F0153C76F800CDCB09 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */; };
 		F884C8F1153C786D00CDCB09 /* PostgresHelper.app in Copy Helper Application */ = {isa = PBXBuildFile; fileRef = F87A426D153AB60C00456130 /* PostgresHelper.app */; };
 		F884C905153C807400CDCB09 /* PostgresStatusMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F884C903153C807400CDCB09 /* PostgresStatusMenuItemViewController.m */; };
@@ -38,38 +34,12 @@
 		F8973A441538851D00EAB41E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8973A421538851D00EAB41E /* InfoPlist.strings */; };
 		F8973A471538851D00EAB41E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A461538851D00EAB41E /* main.m */; };
 		F8973A52153885BD00EAB41E /* com.boundlessgeo.postgres-service.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = F8973A3C1538851D00EAB41E /* com.boundlessgeo.postgres-service.xpc */; };
-		F8A4B4FE15735C6E003C00F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A181538846600EAB41E /* main.m */; };
-		F8A4B4FF15735C6E003C00F5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A1F1538846600EAB41E /* AppDelegate.m */; };
-		F8A4B50015735C6E003C00F5 /* PostgresServer.m in Sources */ = {isa = PBXBuildFile; fileRef = F8973A35153884EF00EAB41E /* PostgresServer.m */; };
-		F8A4B50115735C6E003C00F5 /* PostgresConnectionURLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F81386701538E586003A83F9 /* PostgresConnectionURLValueTransformer.m */; };
-		F8A4B50215735C6E003C00F5 /* PostgresStatusMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F884C903153C807400CDCB09 /* PostgresStatusMenuItemViewController.m */; };
-		F8A4B50315735C6E003C00F5 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F88BDC8515704B22004ECB52 /* NSFileManager+DirectoryLocations.m */; };
-		F8A4B50615735C6E003C00F5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88BDC9015704C14004ECB52 /* Security.framework */; };
-		F8A4B50715735C6E003C00F5 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */; };
-		F8A4B50815735C6E003C00F5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
-		F8A4B50A15735C6E003C00F5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F8973A151538846600EAB41E /* InfoPlist.strings */; };
-		F8A4B50B15735C6E003C00F5 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8973A211538846600EAB41E /* MainMenu.xib */; };
-		F8A4B50D15735C6E003C00F5 /* PostgresStatusMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F884C904153C807400CDCB09 /* PostgresStatusMenuItemView.xib */; };
-		F8A4B50E15735C6E003C00F5 /* Postgres.icns in Resources */ = {isa = PBXBuildFile; fileRef = F884C919153CA24400CDCB09 /* Postgres.icns */; };
-		F8A4B51615735C6E003C00F5 /* com.boundlessgeo.postgres-service.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = F8973A3C1538851D00EAB41E /* com.boundlessgeo.postgres-service.xpc */; };
-		F8A4B51815735C6E003C00F5 /* PostgresHelper.app in Copy Helper Application */ = {isa = PBXBuildFile; fileRef = F87A426D153AB60C00456130 /* PostgresHelper.app */; };
-		F8A4B56C15735F26003C00F5 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8A4B56B15735F26003C00F5 /* Sparkle.framework */; };
-		F8A4B56E15735F75003C00F5 /* Sparkle.framework in Copy Sparkle Framework */ = {isa = PBXBuildFile; fileRef = F8A4B56B15735F26003C00F5 /* Sparkle.framework */; };
 		F8C09C4B15ACD15C00F571AE /* status-off.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C09C4715ACD15C00F571AE /* status-off.png */; };
-		F8C09C4C15ACD15C00F571AE /* status-off.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C09C4715ACD15C00F571AE /* status-off.png */; };
 		F8C09C4D15ACD15C00F571AE /* status-on.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C09C4915ACD15C00F571AE /* status-on.png */; };
-		F8C09C4E15ACD15C00F571AE /* status-on.png in Resources */ = {isa = PBXBuildFile; fileRef = F8C09C4915ACD15C00F571AE /* status-on.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		3671343917C90049003BBA08 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F89739FF1538846600EAB41E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3671343217C8FE9A003BBA08;
-			remoteInfo = postgresql;
-		};
-		3671343C17C92943003BBA08 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F89739FF1538846600EAB41E /* Project object */;
 			proxyType = 1;
@@ -89,20 +59,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = F8973A3B1538851D00EAB41E;
 			remoteInfo = "postgres-service";
-		};
-		F8A4B4FA15735C6E003C00F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F89739FF1538846600EAB41E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F8973A3B1538851D00EAB41E;
-			remoteInfo = "postgres-service";
-		};
-		F8A4B4FC15735C6E003C00F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F89739FF1538846600EAB41E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F87A426C153AB60C00456130;
-			remoteInfo = PostgresHelper;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -127,39 +83,6 @@
 				F8973A52153885BD00EAB41E /* com.boundlessgeo.postgres-service.xpc in Copy XPC Service */,
 			);
 			name = "Copy XPC Service";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F8A4B51515735C6E003C00F5 /* Copy XPC Service */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Contents/XPCServices;
-			dstSubfolderSpec = 1;
-			files = (
-				F8A4B51615735C6E003C00F5 /* com.boundlessgeo.postgres-service.xpc in Copy XPC Service */,
-			);
-			name = "Copy XPC Service";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F8A4B51715735C6E003C00F5 /* Copy Helper Application */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LoginItems;
-			dstSubfolderSpec = 1;
-			files = (
-				F8A4B51815735C6E003C00F5 /* PostgresHelper.app in Copy Helper Application */,
-			);
-			name = "Copy Helper Application";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F8A4B56D15735F3F003C00F5 /* Copy Sparkle Framework */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F8A4B56E15735F75003C00F5 /* Sparkle.framework in Copy Sparkle Framework */,
-			);
-			name = "Copy Sparkle Framework";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -211,8 +134,6 @@
 		F8973A451538851D00EAB41E /* postgres-service-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "postgres-service-Prefix.pch"; sourceTree = "<group>"; };
 		F8973A461538851D00EAB41E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F8973A531538869700EAB41E /* Postgres.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Postgres.entitlements; sourceTree = "<group>"; };
-		F8A4B51D15735C6E003C00F5 /* Postgres.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Postgres.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F8A4B56B15735F26003C00F5 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Postgres/Vendor/Sparkle.framework; sourceTree = "<group>"; };
 		F8C09C4815ACD15C00F571AE /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off.png"; sourceTree = "<group>"; };
 		F8C09C4A15ACD15C00F571AE /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,17 +162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8973A3E1538851D00EAB41E /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F8A4B50515735C6E003C00F5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8A4B50615735C6E003C00F5 /* Security.framework in Frameworks */,
-				F8A4B50715735C6E003C00F5 /* ServiceManagement.framework in Frameworks */,
-				F8A4B50815735C6E003C00F5 /* Cocoa.framework in Frameworks */,
-				F8A4B56C15735F26003C00F5 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,7 +239,6 @@
 				F8973A081538846600EAB41E /* Postgres.app */,
 				F8973A3C1538851D00EAB41E /* com.boundlessgeo.postgres-service.xpc */,
 				F87A426D153AB60C00456130 /* PostgresHelper.app */,
-				F8A4B51D15735C6E003C00F5 /* Postgres.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -337,7 +246,6 @@
 		F8973A0B1538846600EAB41E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F8A4B56B15735F26003C00F5 /* Sparkle.framework */,
 				F88BDC9015704C14004ECB52 /* Security.framework */,
 				F884C8ED153C76E900CDCB09 /* ServiceManagement.framework */,
 				F8973A0C1538846600EAB41E /* Cocoa.framework */,
@@ -496,30 +404,6 @@
 			productReference = F8973A3C1538851D00EAB41E /* com.boundlessgeo.postgres-service.xpc */;
 			productType = "com.apple.product-type.bundle";
 		};
-		F8A4B4F815735C6E003C00F5 /* PostgresApp+Sparkle */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F8A4B51A15735C6E003C00F5 /* Build configuration list for PBXNativeTarget "PostgresApp+Sparkle" */;
-			buildPhases = (
-				F8A4B4FD15735C6E003C00F5 /* Sources */,
-				F8A4B50515735C6E003C00F5 /* Frameworks */,
-				F8A4B56D15735F3F003C00F5 /* Copy Sparkle Framework */,
-				F8A4B50915735C6E003C00F5 /* Resources */,
-				F8A4B51515735C6E003C00F5 /* Copy XPC Service */,
-				F8A4B51715735C6E003C00F5 /* Copy Helper Application */,
-				3671343B17C928FB003BBA08 /* Copy bin, lib, include, share & fix linking issues */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3671343D17C92943003BBA08 /* PBXTargetDependency */,
-				F8A4B4F915735C6E003C00F5 /* PBXTargetDependency */,
-				F8A4B4FB15735C6E003C00F5 /* PBXTargetDependency */,
-			);
-			name = "PostgresApp+Sparkle";
-			productName = Postgres;
-			productReference = F8A4B51D15735C6E003C00F5 /* Postgres.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -541,7 +425,6 @@
 			projectRoot = "";
 			targets = (
 				F8973A071538846600EAB41E /* Postgres */,
-				F8A4B4F815735C6E003C00F5 /* PostgresApp+Sparkle */,
 				F87A426C153AB60C00456130 /* PostgresHelper */,
 				F8973A3B1538851D00EAB41E /* postgres-service */,
 				3671343217C8FE9A003BBA08 /* postgresql */,
@@ -583,22 +466,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8A4B50915735C6E003C00F5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8A4B50A15735C6E003C00F5 /* InfoPlist.strings in Resources */,
-				F8A4B50B15735C6E003C00F5 /* MainMenu.xib in Resources */,
-				F8A4B50D15735C6E003C00F5 /* PostgresStatusMenuItemView.xib in Resources */,
-				F8A4B50E15735C6E003C00F5 /* Postgres.icns in Resources */,
-				F8C09C4C15ACD15C00F571AE /* status-off.png in Resources */,
-				F8C09C4E15ACD15C00F571AE /* status-on.png in Resources */,
-				F883D61115B5CEB60017F83A /* WelcomeWindow.xib in Resources */,
-				0710E97E1639ADD7006D7FB2 /* status-off@2x.png in Resources */,
-				0710E9801639ADD7006D7FB2 /* status-on@2x.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -615,20 +482,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "#!/bin/bash\n\nORIG_INSTALL_ROOT=\"${PROJECT_DIR}/Postgres/Vendor/postgres\"\nEXECUTABLE_TARGET_DIR=\"$BUILT_PRODUCTS_DIR/$EXECUTABLE_FOLDER_PATH\"\n\n# copy binaries\ncd \"${ORIG_INSTALL_ROOT}/bin/\"\nmkdir -p \"$EXECUTABLE_TARGET_DIR/bin/\"\n# copy postgresql binaries\ncp clusterdb createdb createlang createuser dropdb droplang dropuser ecpg initdb oid2name pg_archivecleanup pg_basebackup pg_config pg_controldata pg_ctl pg_dump pg_dumpall pg_receivexlog pg_resetxlog pg_restore pg_standby pg_test_fsync pg_test_timing pg_upgrade pgbench postgres postmaster psql reindexdb vacuumdb vacuumlo \"$EXECUTABLE_TARGET_DIR/bin/\"\n#copy proj binaries\ncp cs2cs geod invgeod invproj nad2bin proj \"$EXECUTABLE_TARGET_DIR/bin/\"\n#copy gdal binaries\ncp gdal_contour gdal_grid gdal_rasterize gdal_translate gdaladdo gdalbuildvrt gdaldem gdalenhance gdalinfo gdallocationinfo gdalmanage gdalsrsinfo gdaltindex gdaltransform gdalwarp nearblack ogr2ogr ogrinfo ogrtindex testepsg \"$EXECUTABLE_TARGET_DIR/bin/\"\n#copy postgis binaries\ncp pgsql2shp raster2pgsql shp2pgsql \"$EXECUTABLE_TARGET_DIR/bin/\"\n\n# copy dynamic libraries only (no need for static libraries)\ncd \"${ORIG_INSTALL_ROOT}/lib/\"\nmkdir -p \"$EXECUTABLE_TARGET_DIR/lib/\"\ncp -af *.dylib *.so \"$EXECUTABLE_TARGET_DIR/lib/\"\ncp -afR pgxs \"$EXECUTABLE_TARGET_DIR/lib/\"\n\n#copy include, share\ncp -afR \"${ORIG_INSTALL_ROOT}/include\" \"${ORIG_INSTALL_ROOT}/share\" \"$EXECUTABLE_TARGET_DIR/\"\n\n# fix dylib paths\ncd \"$EXECUTABLE_TARGET_DIR\"\nprefix=\"${ORIG_INSTALL_ROOT}\"\nprefix_length=${#prefix}\n    \n# fix library ids\nfor libfile in \"lib/\"*\ndo\n\tlibrary_id=$(otool -D $libfile | grep \"$prefix\");\n\tif [[ -n \"$library_id\" ]]\n\tthen\n        new_library_id=\"@loader_path/..\"${library_id:$prefix_length}\n        install_name_tool -id \"$new_library_id\" \"$libfile\"\n\tfi\ndone\n    \n# fix library references\nfor file in \"lib/\"* \"bin/\"*\ndo\n\tlinked_libs=$(otool -L $file | egrep --only-matching \"\\Q$prefix\\E\\S+\");\n\tfor lib_path in $linked_libs\n\tdo\n        new_lib_path=\"@loader_path/..\"${lib_path:$prefix_length}\n        install_name_tool -change \"$lib_path\" \"$new_lib_path\" $file\n\tdone\ndone";
-		};
-		3671343B17C928FB003BBA08 /* Copy bin, lib, include, share & fix linking issues */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy bin, lib, include, share & fix linking issues";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "#!/bin/bash\n\nORIG_INSTALL_ROOT=\"${PROJECT_DIR}/Postgres/Vendor/postgres\"\nEXECUTABLE_TARGET_DIR=\"$BUILT_PRODUCTS_DIR/$EXECUTABLE_FOLDER_PATH\"\n\n# copy binaries\ncd \"${ORIG_INSTALL_ROOT}/bin/\"\nmkdir -p \"$EXECUTABLE_TARGET_DIR/bin/\"\n# copy postgresql binaries\ncp clusterdb createdb createlang createuser dropdb droplang dropuser ecpg initdb oid2name pg_archivecleanup pg_basebackup pg_config pg_controldata pg_ctl pg_dump pg_dumpall pg_receivexlog pg_resetxlog pg_restore pg_standby pg_test_fsync pg_test_timing pg_upgrade pgbench postgres postmaster psql reindexdb vacuumdb vacuumlo \"$EXECUTABLE_TARGET_DIR/bin/\"\n#copy proj binaries\ncp cs2cs geod invgeod invproj nad2bin proj \"$EXECUTABLE_TARGET_DIR/bin/\"\n#copy gdal binaries\ncp gdal_contour gdal_grid gdal_rasterize gdal_translate gdaladdo gdalbuildvrt gdaldem gdalenhance gdalinfo gdallocationinfo gdalmanage gdalserver gdalsrsinfo gdaltindex gdaltransform gdalwarp nearblack ogr2ogr ogrinfo ogrtindex testepsg \"$EXECUTABLE_TARGET_DIR/bin/\"\n#copy postgis binaries\ncp pgsql2shp raster2pgsql shp2pgsql \"$EXECUTABLE_TARGET_DIR/bin/\"\n\n# copy dynamic libraries only (no need for static libraries)\ncd \"${ORIG_INSTALL_ROOT}/lib/\"\nmkdir -p \"$EXECUTABLE_TARGET_DIR/lib/\"\ncp -af *.dylib *.so \"$EXECUTABLE_TARGET_DIR/lib/\"\ncp -afR pgxs \"$EXECUTABLE_TARGET_DIR/lib/\"\n\n#copy include, share\ncp -afR \"${ORIG_INSTALL_ROOT}/include\" \"${ORIG_INSTALL_ROOT}/share\" \"$EXECUTABLE_TARGET_DIR/\"\n\n# fix dylib paths\ncd \"$EXECUTABLE_TARGET_DIR\"\nprefix=\"${ORIG_INSTALL_ROOT}\"\nprefix_length=${#prefix}\n    \n# fix library ids\nfor libfile in \"lib/\"*\ndo\n\tlibrary_id=$(otool -D $libfile | grep \"$prefix\");\n\tif [[ -n \"$library_id\" ]]\n\tthen\n        new_library_id=\"@loader_path/..\"${library_id:$prefix_length}\n        install_name_tool -id \"$new_library_id\" \"$libfile\"\n\tfi\ndone\n    \n# fix library references\nfor file in \"lib/\"* \"bin/\"*\ndo\n\tlinked_libs=$(otool -L $file | egrep --only-matching \"\\Q$prefix\\E\\S+\");\n\tfor lib_path in $linked_libs\n\tdo\n        new_lib_path=\"@loader_path/..\"${lib_path:$prefix_length}\n        install_name_tool -change \"$lib_path\" \"$new_lib_path\" $file\n\tdone\ndone";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -664,20 +517,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8A4B4FD15735C6E003C00F5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F8A4B4FE15735C6E003C00F5 /* main.m in Sources */,
-				F8A4B4FF15735C6E003C00F5 /* AppDelegate.m in Sources */,
-				F8A4B50015735C6E003C00F5 /* PostgresServer.m in Sources */,
-				F8A4B50115735C6E003C00F5 /* PostgresConnectionURLValueTransformer.m in Sources */,
-				F8A4B50215735C6E003C00F5 /* PostgresStatusMenuItemViewController.m in Sources */,
-				F8A4B50315735C6E003C00F5 /* NSFileManager+DirectoryLocations.m in Sources */,
-				F883D60F15B5CEB60017F83A /* WelcomeWindowController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -685,11 +524,6 @@
 			isa = PBXTargetDependency;
 			target = 3671343217C8FE9A003BBA08 /* postgresql */;
 			targetProxy = 3671343917C90049003BBA08 /* PBXContainerItemProxy */;
-		};
-		3671343D17C92943003BBA08 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3671343217C8FE9A003BBA08 /* postgresql */;
-			targetProxy = 3671343C17C92943003BBA08 /* PBXContainerItemProxy */;
 		};
 		F87A4286153AB65200456130 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -700,16 +534,6 @@
 			isa = PBXTargetDependency;
 			target = F8973A3B1538851D00EAB41E /* postgres-service */;
 			targetProxy = F8973A4B1538858900EAB41E /* PBXContainerItemProxy */;
-		};
-		F8A4B4F915735C6E003C00F5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F8973A3B1538851D00EAB41E /* postgres-service */;
-			targetProxy = F8A4B4FA15735C6E003C00F5 /* PBXContainerItemProxy */;
-		};
-		F8A4B4FB15735C6E003C00F5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F87A426C153AB60C00456130 /* PostgresHelper */;
-			targetProxy = F8A4B4FC15735C6E003C00F5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -977,54 +801,6 @@
 			};
 			name = Release;
 		};
-		F8A4B51B15735C6E003C00F5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Postgres/Vendor\"/**",
-					"\"$(SRCROOT)/Postgres/Vendor\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Postgres/Postgres-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					SPARKLE,
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Postgres/Postgres-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
-				POSTGRESAPP_MINOR_VERSION = "";
-				PRODUCT_NAME = Postgres;
-				SDKROOT = macosx10.7;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		F8A4B51C15735C6E003C00F5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Postgres/Vendor\"/**",
-					"\"$(SRCROOT)/Postgres/Vendor\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Postgres/Postgres-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = SPARKLE;
-				INFOPLIST_FILE = "Postgres/Postgres-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path @loader_path";
-				POSTGRESAPP_MINOR_VERSION = "";
-				PRODUCT_NAME = Postgres;
-				SDKROOT = macosx10.7;
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1069,15 +845,6 @@
 			buildConfigurations = (
 				F8973A491538851D00EAB41E /* Debug */,
 				F8973A4A1538851D00EAB41E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F8A4B51A15735C6E003C00F5 /* Build configuration list for PBXNativeTarget "PostgresApp+Sparkle" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F8A4B51B15735C6E003C00F5 /* Debug */,
-				F8A4B51C15735C6E003C00F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
