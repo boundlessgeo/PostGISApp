@@ -18,7 +18,7 @@ GHT_VERSION=0.1.0
 POINTCLOUD_VERSION=0.1.0
 
 #path configuration
-PREFIX=$(CURDIR)/../Postgres/Vendor/postgres
+PREFIX=$(PROJECT_DIR)/Postgres/Vendor/postgres
 PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 
 # commands used for downloading and extracting sources
