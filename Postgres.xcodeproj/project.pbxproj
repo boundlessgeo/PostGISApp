@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0710E97D1639ADD7006D7FB2 /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0710E9791639ADD7006D7FB2 /* status-off@2x.png */; };
 		0710E97F1639ADD7006D7FB2 /* status-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0710E97B1639ADD7006D7FB2 /* status-on@2x.png */; };
+		8B79E38917D7FEF30098F000 /* Postgres.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8B79E38817D7FEF30098F000 /* Postgres.iconset */; };
 		F81386711538E586003A83F9 /* PostgresConnectionURLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F81386701538E586003A83F9 /* PostgresConnectionURLValueTransformer.m */; };
 		F87A426F153AB60C00456130 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
 		F87A4275153AB60C00456130 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F87A4273153AB60C00456130 /* InfoPlist.strings */; };
@@ -21,7 +22,6 @@
 		F884C8F1153C786D00CDCB09 /* PostgresHelper.app in Copy Helper Application */ = {isa = PBXBuildFile; fileRef = F87A426D153AB60C00456130 /* PostgresHelper.app */; };
 		F884C905153C807400CDCB09 /* PostgresStatusMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F884C903153C807400CDCB09 /* PostgresStatusMenuItemViewController.m */; };
 		F884C906153C807400CDCB09 /* PostgresStatusMenuItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F884C904153C807400CDCB09 /* PostgresStatusMenuItemView.xib */; };
-		F884C91A153CA24400CDCB09 /* Postgres.icns in Resources */ = {isa = PBXBuildFile; fileRef = F884C919153CA24400CDCB09 /* Postgres.icns */; };
 		F88BDC8915704B22004ECB52 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F88BDC8515704B22004ECB52 /* NSFileManager+DirectoryLocations.m */; };
 		F88BDC9115704C15004ECB52 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88BDC9015704C14004ECB52 /* Security.framework */; };
 		F8973A0D1538846600EAB41E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
@@ -90,6 +90,7 @@
 /* Begin PBXFileReference section */
 		0710E97A1639ADD7006D7FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off@2x.png"; sourceTree = "<group>"; };
 		0710E97C1639ADD7006D7FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on@2x.png"; sourceTree = "<group>"; };
+		8B79E38817D7FEF30098F000 /* Postgres.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Postgres.iconset; sourceTree = "<group>"; };
 		F813866F1538E586003A83F9 /* PostgresConnectionURLValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostgresConnectionURLValueTransformer.h; sourceTree = "<group>"; };
 		F81386701538E586003A83F9 /* PostgresConnectionURLValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostgresConnectionURLValueTransformer.m; sourceTree = "<group>"; };
 		F87A426D153AB60C00456130 /* PostgresHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PostgresHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +110,6 @@
 		F884C902153C807400CDCB09 /* PostgresStatusMenuItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostgresStatusMenuItemViewController.h; sourceTree = "<group>"; };
 		F884C903153C807400CDCB09 /* PostgresStatusMenuItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostgresStatusMenuItemViewController.m; sourceTree = "<group>"; };
 		F884C904153C807400CDCB09 /* PostgresStatusMenuItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostgresStatusMenuItemView.xib; sourceTree = "<group>"; };
-		F884C919153CA24400CDCB09 /* Postgres.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Postgres.icns; sourceTree = "<group>"; };
 		F88BDC8415704B22004ECB52 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		F88BDC8515704B22004ECB52 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		F88BDC9015704C14004ECB52 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -223,7 +223,7 @@
 		F89739FD1538846600EAB41E = {
 			isa = PBXGroup;
 			children = (
-				F884C919153CA24400CDCB09 /* Postgres.icns */,
+				8B79E38817D7FEF30098F000 /* Postgres.iconset */,
 				F8973A121538846600EAB41E /* Postgres */,
 				F87A4270153AB60C00456130 /* PostgresHelper */,
 				F8973A3F1538851D00EAB41E /* postgres-service */,
@@ -449,12 +449,12 @@
 				F8973A171538846600EAB41E /* InfoPlist.strings in Resources */,
 				F8973A231538846600EAB41E /* MainMenu.xib in Resources */,
 				F884C906153C807400CDCB09 /* PostgresStatusMenuItemView.xib in Resources */,
-				F884C91A153CA24400CDCB09 /* Postgres.icns in Resources */,
 				F8C09C4B15ACD15C00F571AE /* status-off.png in Resources */,
 				F8C09C4D15ACD15C00F571AE /* status-on.png in Resources */,
 				F883D61015B5CEB60017F83A /* WelcomeWindow.xib in Resources */,
 				0710E97D1639ADD7006D7FB2 /* status-off@2x.png in Resources */,
 				0710E97F1639ADD7006D7FB2 /* status-on@2x.png in Resources */,
+				8B79E38917D7FEF30098F000 /* Postgres.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,6 +746,7 @@
 		F8973A271538846600EAB41E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/Postgres-Prefix.pch";
@@ -761,6 +762,7 @@
 		F8973A281538846600EAB41E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/Postgres-Prefix.pch";
