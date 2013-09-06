@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0710E97D1639ADD7006D7FB2 /* status-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0710E9791639ADD7006D7FB2 /* status-off@2x.png */; };
 		0710E97F1639ADD7006D7FB2 /* status-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0710E97B1639ADD7006D7FB2 /* status-on@2x.png */; };
+		8B31298117D95F8900E5A8F1 /* postgres.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B31298017D95F8900E5A8F1 /* postgres.png */; };
 		8B79E38917D7FEF30098F000 /* Postgres.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 8B79E38817D7FEF30098F000 /* Postgres.iconset */; };
 		F81386711538E586003A83F9 /* PostgresConnectionURLValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = F81386701538E586003A83F9 /* PostgresConnectionURLValueTransformer.m */; };
 		F87A426F153AB60C00456130 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8973A0C1538846600EAB41E /* Cocoa.framework */; };
@@ -90,6 +91,7 @@
 /* Begin PBXFileReference section */
 		0710E97A1639ADD7006D7FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-off@2x.png"; sourceTree = "<group>"; };
 		0710E97C1639ADD7006D7FB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/status-on@2x.png"; sourceTree = "<group>"; };
+		8B31298017D95F8900E5A8F1 /* postgres.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = postgres.png; sourceTree = SOURCE_ROOT; };
 		8B79E38817D7FEF30098F000 /* Postgres.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = Postgres.iconset; sourceTree = "<group>"; };
 		F813866F1538E586003A83F9 /* PostgresConnectionURLValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostgresConnectionURLValueTransformer.h; sourceTree = "<group>"; };
 		F81386701538E586003A83F9 /* PostgresConnectionURLValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostgresConnectionURLValueTransformer.m; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 		F87A4267153AB23F00456130 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8B31298017D95F8900E5A8F1 /* postgres.png */,
 				F87A4268153AB24600456130 /* Status Item */,
 			);
 			name = Images;
@@ -455,6 +458,7 @@
 				0710E97D1639ADD7006D7FB2 /* status-off@2x.png in Resources */,
 				0710E97F1639ADD7006D7FB2 /* status-on@2x.png in Resources */,
 				8B79E38917D7FEF30098F000 /* Postgres.iconset in Resources */,
+				8B31298117D95F8900E5A8F1 /* postgres.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
