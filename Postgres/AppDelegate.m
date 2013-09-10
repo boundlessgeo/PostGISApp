@@ -57,7 +57,6 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
 @synthesize postgresStatusMenuItemViewController = _postgresStatusMenuItemViewController;
 @synthesize statusBarMenu = _statusBarMenu;
 @synthesize postgresStatusMenuItem = _postgresStatusMenuItem;
-@synthesize automaticallyOpenDocumentationMenuItem = _automaticallyOpenDocumentationMenuItem;
 @synthesize automaticallyStartMenuItem = _automaticallyStartMenuItem;
 @synthesize checkForUpdatesMenuItem = _checkForUpdatesMenuItem;
 
@@ -74,9 +73,7 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     _statusBarItem.menu = self.statusBarMenu;
     _statusBarItem.image = [NSImage imageNamed:@"status-off"];
     _statusBarItem.alternateImage = [NSImage imageNamed:@"status-on"];
-        
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:kPostgresAutomaticallyOpenDocumentationPreferenceKey]];
-    [self.automaticallyOpenDocumentationMenuItem setState:[[NSUserDefaults standardUserDefaults] boolForKey:kPostgresAutomaticallyOpenDocumentationPreferenceKey]];
+
     [self.automaticallyStartMenuItem setState:PostgresIsHelperApplicationSetAsLoginItem() ? NSOnState : NSOffState];
     
     [[PostgresServer sharedServer] setMigrationDelegate:self];
@@ -95,8 +92,6 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
         [_welcomeWindowController showWindow:self];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kPostgresFirstLaunchPreferenceKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
-    } else if ([[NSUserDefaults standardUserDefaults] boolForKey:kPostgresAutomaticallyOpenDocumentationPreferenceKey]) {
-        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:kPostgresAppWebsiteURLString]];
     }
     
     [self.postgresStatusMenuItem setEnabled:NO];
@@ -137,12 +132,6 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     [[NSWorkspace sharedWorkspace] openFile:psqlPath withApplication:@"Terminal"];
 }
 
-- (IBAction)selectAutomaticallyOpenDocumentation:(id)sender {
-    [self.automaticallyOpenDocumentationMenuItem setState:![self.automaticallyOpenDocumentationMenuItem state]];
-
-    [[NSUserDefaults standardUserDefaults] setBool:self.automaticallyOpenDocumentationMenuItem.state == NSOnState forKey:kPostgresAutomaticallyOpenDocumentationPreferenceKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 - (IBAction)selectAutomaticallyStart:(id)sender {
     [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
@@ -155,13 +144,6 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.PostgresHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
         NSLog(@"SMLoginItemSetEnabled Failed");
     }
-}
-
-- (IBAction)checkForUpdates:(id)sender {
-#ifdef SPARKLE
-    [[SUUpdater sharedUpdater] setSendsSystemProfile:YES];
-    [[SUUpdater sharedUpdater] checkForUpdates:sender];
-#endif
 }
 
 #pragma mark - PostgresServerMigrationDelegate
