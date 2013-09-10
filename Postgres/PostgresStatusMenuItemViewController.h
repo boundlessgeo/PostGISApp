@@ -27,7 +27,6 @@
 
 @interface PostgresStatusMenuItemViewController : NSViewController
 
-@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
 @property (weak) IBOutlet NSTextField *titleTextField;
 
 - (void)startAnimatingWithTitle:(NSString *)title;
