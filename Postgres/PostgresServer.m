@@ -130,7 +130,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     
     if (!existingPGVersion) {
         [self executeCommandNamed:@"initdb" arguments:[NSArray arrayWithObjects:[NSString stringWithFormat:@"-D%@", _varPath], [NSString stringWithFormat:@"-E%@", @"UTF8"], [NSString stringWithFormat:@"--locale=%@_%@.UTF-8", [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode], [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]], nil] terminationHandler:^(NSUInteger status) {
-            [self executeCommandNamed:@"pg_ctl" arguments:[NSArray arrayWithObjects:@"start", [NSString stringWithFormat:@"-D%@", _varPath], @"-w", [NSString stringWithFormat:@"-o'-p%ld'", port], nil] terminationHandler:^(NSUInteger status) {
+            [self executeCommandNamed:@"pg_ctl" arguments:[NSArray arrayWithObjects:@"start", [NSString stringWithFormat:@"-D%@", _varPath], @"-w", [NSString stringWithFormat:@"-o'-p%ld'", port], @"-l", [NSString stringWithFormat:@"%@/../postgis_log.txt", _varPath], nil] terminationHandler:^(NSUInteger status) {
                 [self executeCommandNamed:@"createdb" arguments:[NSArray arrayWithObjects:[NSString stringWithFormat:@"-p%ld", port], NSUserName(), nil] terminationHandler:^(NSUInteger status) {
                     // Install PostGIS in deault DB
                     [self executeCommandNamed:@"psql" arguments:[NSArray arrayWithObjects:[NSString stringWithFormat:@"-p%ld", port], @"-w", @"-c CREATE EXTENSION postgis", nil] terminationHandler:^(NSUInteger status) {
@@ -142,7 +142,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
             }];
         }];    
     } else {
-        [self executeCommandNamed:@"pg_ctl" arguments:[NSArray arrayWithObjects:@"start", [NSString stringWithFormat:@"-D%@", _varPath], [NSString stringWithFormat:@"-o'-p%ld'", port], nil] terminationHandler:^(NSUInteger status) {
+        [self executeCommandNamed:@"pg_ctl" arguments:[NSArray arrayWithObjects:@"start", [NSString stringWithFormat:@"-D%@", _varPath], [NSString stringWithFormat:@"-o'-p%ld'", port], @"-l", [NSString stringWithFormat:@"%@/../postgis_log.txt", _varPath], nil] terminationHandler:^(NSUInteger status) {
             // Kill server and try one more time if server can't be started
             if (status != 0) {
                 static dispatch_once_t onceToken;

@@ -40,5 +40,6 @@
 - (IBAction)selectDocumentation:(id)sender;
 - (IBAction)selectPsql:(id)sender;
 - (IBAction)selectAutomaticallyStart:(id)sender;
+- (IBAction)selectOpenLogFile:(id)sender;
 
 @end

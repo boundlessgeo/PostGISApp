@@ -28,6 +28,7 @@
 #import "PostgresServer.h"
 #import "PostgresStatusMenuItemViewController.h"
 #import "WelcomeWindowController.h"
+#import "NSFileManager+DirectoryLocations.h"
 
 #ifdef SPARKLE
 #import <Sparkle/Sparkle.h>
@@ -144,6 +145,11 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.PostgresHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
         NSLog(@"SMLoginItemSetEnabled Failed");
     }
+}
+
+- (IBAction)selectOpenLogFile:(id)sender {
+    NSString *logPath = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"postgis_log.txt"];
+    [[NSWorkspace sharedWorkspace] openFile:logPath];
 }
 
 #pragma mark - PostgresServerMigrationDelegate
