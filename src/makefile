@@ -21,6 +21,14 @@ POINTCLOUD_VERSION=0.1.0
 PREFIX=$(PROJECT_DIR)/Postgres/Vendor/postgres
 PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 
+# Force compilers to use OS X 10.7 SDK for better compatibility with older systems
+MIN_OSX=10.7
+CFLAGS:=$(CFLAGS) -mmacosx-version-min=$(MIN_OSX)
+CXXFLAGS:=$(CFLAGS) -mmacosx-version-min=$(MIN_OSX)
+MACOSX_DEPLOYMENT_TARGET=$(MIN_OSX)
+
+export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
+
 # commands used for downloading and extracting sources
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
