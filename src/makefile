@@ -10,7 +10,7 @@ LIBXML2_VERSION=2.9.1
 OPENSSL_VERSION=1.0.1e
 PROJ_VERSION=4.8.0
 DATUMGRID_VERSION=1.5
-JSONC_VERSION=0.10
+JSONC_VERSION=0.11
 LIBTIFF_VERSION=4.0.3
 LIBLAS_VERSION=1.7.0
 LASZIP_VERSION=2.2.0
@@ -242,20 +242,22 @@ clean-libproj:
 ###### JSON-c ###########
 #########################
 
-$(PREFIX)/include/json/json_object_iterator.h: json-c-$(JSONC_VERSION)/Makefile
+json-c: $(PREFIX)/lib/libjson.dylib
+
+$(PREFIX)/lib/libjson.dylib: json-c-$(JSONC_VERSION)/Makefile
 	make -C json-c-$(JSONC_VERSION) install
 	cp json-c-$(JSONC_VERSION)/json_object_iterator.h "$(PREFIX)/include/json/json_object_iterator.h"
 
 
 json-c-$(JSONC_VERSION)/Makefile: json-c-$(JSONC_VERSION)/configure
-	cd json-c-$(JSONC_VERSION) && ./configure --prefix="$(PREFIX)"
+	cd json-c-$(JSONC_VERSION) && ./configure --prefix="$(PREFIX)" --disable-dependency-tracking
 
 json-c-$(JSONC_VERSION)/configure: json-c-$(JSONC_VERSION).tar.gz
 	$(TAR) json-c-$(JSONC_VERSION).tar.gz
 	touch $@
 
 json-c-$(JSONC_VERSION).tar.gz:
-	$(CURL) "https://github.com/downloads/json-c/json-c/json-c-$(JSONC_VERSION).tar.gz"
+	$(CURL) "https://s3.amazonaws.com/json-c_releases/releases/json-c-$(JSONC_VERSION).tar.gz"
 
 
 #########################
@@ -296,7 +298,7 @@ $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so: postgis-${POSTGIS_VERSION}/GN
 	make -C postgis-${POSTGIS_VERSION}
 	make -C postgis-${POSTGIS_VERSION} install
 
-postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/include/json/json_object_iterator.h
+postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libjson.dylib
 	cd postgis-${POSTGIS_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-geosconfig="$(PREFIX)/bin/geos-config" --with-projdir="$(PREFIX)" --with-gdaldir="$(PREFIX)" --with-jsondir="$(PREFIX)"
 	/usr/bin/sed -i -e 's#/usr/local$$#"$(PREFIX)"#g' postgis-${POSTGIS_VERSION}/liblwgeom/Makefile
 	touch $@
