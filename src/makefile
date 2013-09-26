@@ -371,7 +371,7 @@ $(PREFIX)/lib/libcgal.dylib: CGAL-$(CGAL_VERSION)/Makefile
 	make -C CGAL-$(CGAL_VERSION) install
 
 CGAL-$(CGAL_VERSION)/Makefile: CGAL-$(CGAL_VERSION)/CMakeLists.txt $(PREFIX)/lib/libgmp.dylib $(PREFIX)/lib/libmpfr.dylib $(PREFIX)/lib/libboost_system.a
-	cd CGAL-$(CGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)"
+	cd CGAL-$(CGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)" -DCMAKE_INSTALL_NAME_DIR=$(PREFIX)lib
 
 CGAL-$(CGAL_VERSION)/CMakeLists.txt: CGAL-$(CGAL_VERSION).tar.bz2
 	$(TAR) CGAL-$(CGAL_VERSION).tar.bz2
@@ -393,7 +393,7 @@ $(PREFIX)/lib/libsfcgal.dylib: SFCGAL-$(SFCGAL_VERSION)/Makefile
 	make -C SFCGAL-$(SFCGAL_VERSION) install
 
 SFCGAL-$(SFCGAL_VERSION)/Makefile: SFCGAL-$(SFCGAL_VERSION)/CMakeLists.txt $(PREFIX)/lib/libcgal.dylib
-	cd SFCGAL-$(SFCGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)"
+	cd SFCGAL-$(SFCGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)" -DCMAKE_INSTALL_NAME_DIR=$(PREFIX)lib
 
 SFCGAL-$(SFCGAL_VERSION)/CMakeLists.txt: sfcgal-$(SFCGAL_VERSION).tar.gz
 	$(TAR) sfcgal-$(SFCGAL_VERSION).tar.gz
