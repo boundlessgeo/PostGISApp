@@ -399,7 +399,7 @@ SFCGAL-$(SFCGAL_VERSION)/CMakeLists.txt: sfcgal-$(SFCGAL_VERSION).tar.gz
 	$(TAR) sfcgal-$(SFCGAL_VERSION).tar.gz
 	touch $@
 
-sfcgal-v$(SFCGAL_VERSION).tar.gz:
+sfcgal-$(SFCGAL_VERSION).tar.gz:
 	$(CURL) https://github.com/Oslandia/SFCGAL/archive/v$(SFCGAL_VERSION).tar.gz
 	mv v$(SFCGAL_VERSION).tar.gz sfcgal-$(SFCGAL_VERSION).tar.gz
 
