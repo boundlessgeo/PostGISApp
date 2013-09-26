@@ -343,13 +343,13 @@ clean-mpfr:
 ####### BOOST ###########
 #########################
 
-boost: $(PREFIX)/lib/libboost_iostreams.dylib
+boost: $(PREFIX)/lib/libboost_system.a
 
-$(PREFIX)/lib/libboost_iostreams.dylib: boost_$(BOOST_VERSION)/b2
-	cd boost_$(BOOST_VERSION) && ./bjam toolset=darwin link=shared threading=multi runtime-link=shared variant=release address-model=64 -mmacosx-version=$(MIN_OSX) -mmacosx-version-min=$(MIN_OSX) install
+$(PREFIX)/lib/libboost_system.a: boost_$(BOOST_VERSION)/b2
+	cd boost_$(BOOST_VERSION) && ./bjam toolset=darwin link=static threading=multi runtime-link=static variant=release address-model=64 -mmacosx-version=$(MIN_OSX) -mmacosx-version-min=$(MIN_OSX) --dll-path=$(PREFIX) install
 
 boost_$(BOOST_VERSION)/b2: boost_$(BOOST_VERSION)/bootstrap.sh
-	cd boost_$(BOOST_VERSION) && ./bootstrap.sh --prefix=$(PREFIX)
+	cd boost_$(BOOST_VERSION) && ./bootstrap.sh --prefix=$(PREFIX) --libdir=$(PREFIX)/lib --with-libraries=system,thread,serialization,date_time,program_options
 
 boost_$(BOOST_VERSION)/bootstrap.sh: boost_$(BOOST_VERSION).tar.bz2
 	$(TAR) boost_$(BOOST_VERSION).tar.bz2
@@ -370,7 +370,7 @@ cgal: $(PREFIX)/lib/libcgal.dylib
 $(PREFIX)/lib/libcgal.dylib: CGAL-$(CGAL_VERSION)/Makefile
 	make -C CGAL-$(CGAL_VERSION) install
 
-CGAL-$(CGAL_VERSION)/Makefile: CGAL-$(CGAL_VERSION)/CMakeLists.txt $(PREFIX)/lib/libgmp.dylib $(PREFIX)/lib/libmpfr.dylib $(PREFIX)/lib/libboost_iostreams.dylib
+CGAL-$(CGAL_VERSION)/Makefile: CGAL-$(CGAL_VERSION)/CMakeLists.txt $(PREFIX)/lib/libgmp.dylib $(PREFIX)/lib/libmpfr.dylib $(PREFIX)/lib/libboost_system.a
 	cd CGAL-$(CGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)"
 
 CGAL-$(CGAL_VERSION)/CMakeLists.txt: CGAL-$(CGAL_VERSION).tar.bz2
