@@ -16,6 +16,11 @@ LIBLAS_VERSION=1.7.0
 LASZIP_VERSION=2.2.0
 GHT_VERSION=0.1.0
 POINTCLOUD_VERSION=0.1.0
+CGAL_VERSION=4.2
+SFCGAL_VERSION=1.0
+GMP_VERSION=5.1.2
+MPFR_VERSION=3.1.2
+BOOST_VERSION=1_54_0
 
 #path configuration
 PREFIX=$(PROJECT_DIR)/Postgres/Vendor/postgres
@@ -24,7 +29,7 @@ PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 # Force compilers to use OS X 10.7 SDK for better compatibility with older systems
 MIN_OSX=10.7
 CFLAGS:=$(CFLAGS) -mmacosx-version-min=$(MIN_OSX)
-CXXFLAGS:=$(CFLAGS) -mmacosx-version-min=$(MIN_OSX)
+CXXFLAGS:=$(CXXFLAGS) -mmacosx-version-min=$(MIN_OSX)
 MACOSX_DEPLOYMENT_TARGET=$(MIN_OSX)
 
 export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
@@ -291,6 +296,119 @@ clean-libtiff:
 	rm -Rf tiff-$(LIBTIFF_VERSION)
 
 #########################
+####### GMP #############
+#########################
+
+gmp: $(PREFIX)/lib/libgmp.dylib
+
+$(PREFIX)/lib/libgmp.dylib: gmp-$(GMP_VERSION)/Makefile
+	make -C gmp-$(GMP_VERSION) install
+
+gmp-$(GMP_VERSION)/Makefile: gmp-$(GMP_VERSION)/configure
+	cd gmp-$(GMP_VERSION) && ./configure --prefix=$(PREFIX)
+
+gmp-$(GMP_VERSION)/configure: gmp-$(GMP_VERSION).tar.bz2
+	$(TAR) gmp-$(GMP_VERSION).tar.bz2
+	touch $@
+
+gmp-$(GMP_VERSION).tar.bz2:
+	$(CURL) ftp://ftp.gmplib.org/pub/gmp-5.1.2/gmp-$(GMP_VERSION).tar.bz2
+
+clean-gmp:
+	rm -Rf gmp-$(GMP_VERSION)
+
+#########################
+####### MPFR ############
+#########################
+
+mpfr: $(PREFIX)/lib/libmpfr.dylib
+
+$(PREFIX)/lib/libmpfr.dylib: mpfr-$(MPFR_VERSION)/Makefile
+	make -C mpfr-$(MPFR_VERSION) install
+
+mpfr-$(MPFR_VERSION)/Makefile: mpfr-$(MPFR_VERSION)/configure
+	cd mpfr-$(MPFR_VERSION) && ./configure --prefix=$(PREFIX) --with-gmp=$(PREFIX)
+
+mpfr-$(MPFR_VERSION)/configure: mpfr-$(MPFR_VERSION).tar.bz2
+	$(TAR) mpfr-$(MPFR_VERSION).tar.bz2
+	touch $@
+
+mpfr-$(MPFR_VERSION).tar.bz2:
+	$(CURL) http://www.mpfr.org/mpfr-current/mpfr-$(MPFR_VERSION).tar.bz2
+
+clean-mpfr:
+	rm -Rf mpfr-$(MPFR_VERSION)
+	
+#########################
+####### BOOST ###########
+#########################
+
+boost: $(PREFIX)/lib/libboost_iostreams.dylib
+
+$(PREFIX)/lib/libboost_iostreams.dylib: boost_$(BOOST_VERSION)/b2
+	cd boost_$(BOOST_VERSION) && ./bjam toolset=darwin link=shared threading=multi runtime-link=shared variant=release address-model=64 -mmacosx-version=$(MIN_OSX) -mmacosx-version-min=$(MIN_OSX) install
+
+boost_$(BOOST_VERSION)/b2: boost_$(BOOST_VERSION)/bootstrap.sh
+	cd boost_$(BOOST_VERSION) && ./bootstrap.sh --prefix=$(PREFIX)
+
+boost_$(BOOST_VERSION)/bootstrap.sh: boost_$(BOOST_VERSION).tar.bz2
+	$(TAR) boost_$(BOOST_VERSION).tar.bz2
+	touch $@
+
+boost_$(BOOST_VERSION).tar.bz2:
+	$(CURL) http://downloads.sourceforge.net/project/boost/boost/1.54.0/boost_$(BOOST_VERSION).tar.bz2
+
+clean-boost:
+	rm -Rf boost_$(BOOST_VERSION)
+
+#########################
+####### CGAL ############
+#########################
+
+cgal: $(PREFIX)/lib/libcgal.dylib
+
+$(PREFIX)/lib/libcgal.dylib: CGAL-$(CGAL_VERSION)/Makefile
+	make -C CGAL-$(CGAL_VERSION) install
+
+CGAL-$(CGAL_VERSION)/Makefile: CGAL-$(CGAL_VERSION)/CMakeLists.txt $(PREFIX)/lib/libgmp.dylib $(PREFIX)/lib/libmpfr.dylib $(PREFIX)/lib/libboost_iostreams.dylib
+	cd CGAL-$(CGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)"
+
+CGAL-$(CGAL_VERSION)/CMakeLists.txt: CGAL-$(CGAL_VERSION).tar.bz2
+	$(TAR) CGAL-$(CGAL_VERSION).tar.bz2
+	touch $@
+
+CGAL-$(CGAL_VERSION).tar.bz2:
+	$(CURL) https://gforge.inria.fr/frs/download.php/32360/CGAL-$(CGAL_VERSION).tar.bz2
+
+clean-cgal:
+	rm -Rf CGAL-$(CGAL_VERSION)
+
+#########################
+####### SFCGAL ##########
+#########################
+
+sfcgal: $(PREFIX)/lib/libsfcgal.dylib
+
+$(PREFIX)/lib/libsfcgal.dylib: SFCGAL-$(SFCGAL_VERSION)/Makefile
+	make -C SFCGAL-$(SFCGAL_VERSION) install
+
+SFCGAL-$(SFCGAL_VERSION)/Makefile: SFCGAL-$(SFCGAL_VERSION)/CMakeLists.txt $(PREFIX)/lib/libcgal.dylib
+	cd SFCGAL-$(SFCGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)"
+
+SFCGAL-$(SFCGAL_VERSION)/CMakeLists.txt: sfcgal-$(SFCGAL_VERSION).tar.gz
+	$(TAR) sfcgal-$(SFCGAL_VERSION).tar.gz
+	touch $@
+
+sfcgal-v$(SFCGAL_VERSION).tar.gz:
+	$(CURL) https://github.com/Oslandia/SFCGAL/archive/v$(SFCGAL_VERSION).tar.gz
+	mv v$(SFCGAL_VERSION).tar.gz sfcgal-$(SFCGAL_VERSION).tar.gz
+
+clean-sfcgal:
+	rm -Rf sfcgal-$(CGAL_VERSION)
+
+
+
+#########################
 ###### PostGIS ##########
 #########################
 
@@ -306,8 +424,8 @@ $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so: postgis-${POSTGIS_VERSION}/GN
 	make -C postgis-${POSTGIS_VERSION}
 	make -C postgis-${POSTGIS_VERSION} install
 
-postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libjson.dylib
-	cd postgis-${POSTGIS_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-geosconfig="$(PREFIX)/bin/geos-config" --with-projdir="$(PREFIX)" --with-gdaldir="$(PREFIX)" --with-jsondir="$(PREFIX)"
+postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libjson.dylib $(PREFIX)/lib/libsfcgal.dylib
+	cd postgis-${POSTGIS_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-geosconfig="$(PREFIX)/bin/geos-config" --with-projdir="$(PREFIX)" --with-gdaldir="$(PREFIX)" --with-jsondir="$(PREFIX)" --with-sfcgal="$(PREFIX)/bin/sfcgal-config"
 	/usr/bin/sed -i -e 's#/usr/local$$#"$(PREFIX)"#g' postgis-${POSTGIS_VERSION}/liblwgeom/Makefile
 	touch $@
 
