@@ -369,6 +369,10 @@ cgal: $(PREFIX)/lib/libcgal.dylib
 
 $(PREFIX)/lib/libcgal.dylib: CGAL-$(CGAL_VERSION)/Makefile
 	make -C CGAL-$(CGAL_VERSION) install
+	install_name_tool -change $(PROJECT_DIR)/src/CGAL-$(CGAL_VERSION)/lib/libCGAL.10.dylib $(PREFIX)/lib/libCGAL.10.dylib CGAL-$(CGAL_VERSION)/lib/libCGAL_Core.10.dylib
+	install_name_tool -change $(PROJECT_DIR)/src/CGAL-$(CGAL_VERSION)/lib/libCGAL.10.dylib $(PREFIX)/lib/libCGAL.10.dylib CGAL-$(CGAL_VERSION)/lib/libCGAL_ImageIO.10.dylib
+	cp CGAL-$(CGAL_VERSION)/lib/libCGAL_Core*.dylib $(PREFIX)/lib/
+	cp CGAL-$(CGAL_VERSION)/lib/libCGAL_ImageIO*.dylib $(PREFIX)/lib/
 
 CGAL-$(CGAL_VERSION)/Makefile: CGAL-$(CGAL_VERSION)/CMakeLists.txt $(PREFIX)/lib/libgmp.dylib $(PREFIX)/lib/libmpfr.dylib $(PREFIX)/lib/libboost_system.a
 	cd CGAL-$(CGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)" -DCMAKE_INSTALL_NAME_DIR=$(PREFIX)/lib
@@ -391,6 +395,8 @@ sfcgal: $(PREFIX)/lib/libsfcgal.dylib
 
 $(PREFIX)/lib/libsfcgal.dylib: SFCGAL-$(SFCGAL_VERSION)/Makefile
 	make -C SFCGAL-$(SFCGAL_VERSION) install
+	install_name_tool -change $(PROJECT_DIR)/src/CGAL-$(CGAL_VERSION)/lib/libCGAL_Core.10.dylib $(PREFIX)/lib/libCGAL_Core.10.dylib SFCGAL-$(SFCGAL_VERSION)/src/libSFCGAL.dylib
+	cp SFCGAL-$(SFCGAL_VERSION)/src/libSFCGAL.dylib $(PREFIX)/lib/
 
 SFCGAL-$(SFCGAL_VERSION)/Makefile: SFCGAL-$(SFCGAL_VERSION)/CMakeLists.txt $(PREFIX)/lib/libcgal.dylib
 	cd SFCGAL-$(SFCGAL_VERSION) && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" -DCMAKE_OSX_SYSROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/ -DCMAKE_OSX_ARCHITECTURES="x86_64" -DCMAKE_CXX_FLAGS="$(CXXFLAGS)" -DCMAKE_INSTALL_NAME_DIR=$(PREFIX)/lib
@@ -419,10 +425,12 @@ postgis: $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so $(PREFIX)/lib/liblwge
 $(PREFIX)/lib/liblwgeom.dylib: postgis-${POSTGIS_VERSION}/GNUMakefile $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so
 	make -C postgis-${POSTGIS_VERSION}/liblwgeom
 	make -C postgis-${POSTGIS_VERSION}/liblwgeom install
+	install_name_tool -change $(PROJECT_DIR)/src/SFCGAL-$(SFCGAL_VERSION)/src/libSFCGAL.dylib $(PREFIX)/lib/libSFCGAL.dylib $(PREFIX)/lib/liblwgeom.dylib
 
 $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so: postgis-${POSTGIS_VERSION}/GNUMakefile
 	make -C postgis-${POSTGIS_VERSION}
 	make -C postgis-${POSTGIS_VERSION} install
+	install_name_tool -change $(PROJECT_DIR)/src/SFCGAL-$(SFCGAL_VERSION)/src/libSFCGAL.dylib $(PREFIX)/lib/libSFCGAL.dylib $(PREFIX)/lib/postgis-2.1.so
 
 postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libjson.dylib $(PREFIX)/lib/libsfcgal.dylib
 	cd postgis-${POSTGIS_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-geosconfig="$(PREFIX)/bin/geos-config" --with-projdir="$(PREFIX)" --with-gdaldir="$(PREFIX)" --with-jsondir="$(PREFIX)" --with-sfcgal="$(PREFIX)/bin/sfcgal-config"
