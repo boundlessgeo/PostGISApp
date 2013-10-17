@@ -137,12 +137,9 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
                         [self executeCommandNamed:@"psql" arguments:[NSArray arrayWithObjects:[NSString stringWithFormat:@"-p%ld", port], @"-w", @"-c ALTER USER postgres WITH SUPERUSER", nil] terminationHandler:^(NSUInteger status) {
                             // Install PostGIS in default DB
                             [self executeCommandNamed:@"psql" arguments:[NSArray arrayWithObjects:[NSString stringWithFormat:@"-p%ld", port], @"-w", @"-c CREATE EXTENSION postgis", nil] terminationHandler:^(NSUInteger status) {
-                                // Make sure sfcgal functions are installed
-                                [self executeCommandNamed:@"psql" arguments:@[[NSString stringWithFormat:@"-f %@/../share/contrib/postgis-2.1/sfcgal.sql",_binPath]] terminationHandler:^(NSUInteger status) {
-                                    if (completionBlock) {
-                                        completionBlock(status);
-                                    }
-                                 }];
+                                if (completionBlock) {
+                                    completionBlock(status);
+                                }
                             }];
                         }];
                     }];
