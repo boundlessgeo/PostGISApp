@@ -1,7 +1,7 @@
 # VERSION numbers
-POSTGIS_VERSION=2.1.0
+POSTGIS_VERSION=2.1.1
 POSTGIS_MAJOR_VERSION=2.1
-POSTGRES_VERSION=9.3.0
+POSTGRES_VERSION=9.3.2
 GDAL_VERSION=1.9.2
 GEOS_VERSION=3.4.0
 LIBEDIT_VERSION=20130611-3.1
@@ -38,7 +38,7 @@ export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: postgresql postgis pointcloud
+all: postgresql postgis
 clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libgeos clean-libtiff
 
 #########################
@@ -432,8 +432,8 @@ $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so: postgis-${POSTGIS_VERSION}/GN
 	make -C postgis-${POSTGIS_VERSION} install
 	install_name_tool -change $(PROJECT_DIR)/src/SFCGAL-$(SFCGAL_VERSION)/src/libSFCGAL.dylib $(PREFIX)/lib/libSFCGAL.dylib $(PREFIX)/lib/postgis-2.1.so
 
-postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libjson.dylib $(PREFIX)/lib/libsfcgal.dylib
-	cd postgis-${POSTGIS_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-geosconfig="$(PREFIX)/bin/geos-config" --with-projdir="$(PREFIX)" --with-gdaldir="$(PREFIX)" --with-jsondir="$(PREFIX)" --with-sfcgal="$(PREFIX)/bin/sfcgal-config"
+postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libjson.dylib
+	cd postgis-${POSTGIS_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-geosconfig="$(PREFIX)/bin/geos-config" --with-projdir="$(PREFIX)" --with-gdaldir="$(PREFIX)" --with-jsondir="$(PREFIX)"
 	/usr/bin/sed -i -e 's#/usr/local$$#"$(PREFIX)"#g' postgis-${POSTGIS_VERSION}/liblwgeom/Makefile
 	touch $@
 
