@@ -666,7 +666,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PostgresHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Michael Weisman (88XTAN35SH)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PostgresHelper/PostGISHelper-Prefix.pch";
 				INFOPLIST_FILE = "PostgresHelper/PostGISHelper-Info.plist";
@@ -682,7 +682,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PostgresHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Michael Weisman (88XTAN35SH)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PostgresHelper/PostGISHelper-Prefix.pch";
 				INFOPLIST_FILE = "PostgresHelper/PostGISHelper-Info.plist";
@@ -700,7 +700,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -723,6 +723,7 @@
 				POSTGRESAPP_BUILD_VERSION = 14;
 				POSTGRESAPP_MINOR_VERSION = 3;
 				POSTGRES_VERSION = 9.3.0;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				SUITE_REV = "";
 			};
@@ -734,7 +735,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -750,6 +751,7 @@
 				POSTGRESAPP_BUILD_VERSION = 14;
 				POSTGRESAPP_MINOR_VERSION = 3;
 				POSTGRES_VERSION = 9.3.0;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx10.7;
 				SUITE_REV = "";
 			};
@@ -759,7 +761,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Michael Weisman (88XTAN35SH)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/PostGIS-Prefix.pch";
 				INFOPLIST_FILE = "Postgres/PostGIS-Info.plist";
@@ -775,7 +777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Michael Weisman (88XTAN35SH)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/PostGIS-Prefix.pch";
 				INFOPLIST_FILE = "Postgres/PostGIS-Info.plist";
