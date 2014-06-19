@@ -38,7 +38,7 @@ export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
-all: postgresql postgis
+all: postgresql postgis pointcloud
 clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libgeos clean-libtiff
 
 #########################
