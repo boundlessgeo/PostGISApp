@@ -110,6 +110,17 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     NSLog(@"Existing PGVersion: %@", existingPGVersion);
     NSLog(@"Installed PGVersion: %@", installedPGVersion);
     
+    // Ensure gridshift files are in place
+    NSString *projPath = [[NSString stringWithFormat:@"%@/../proj",_varPath] stringByStandardizingPath];
+    NSString *projSrcPath = [[NSString stringWithFormat:@"%@/../share/proj",_binPath] stringByStandardizingPath];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:projPath]) {
+        NSError *moveErr;
+        [[NSFileManager defaultManager] copyItemAtPath:projSrcPath toPath:projPath error:&moveErr];
+        if (moveErr) {
+            NSLog(@"Error copying %@ to %@", projSrcPath, projPath);
+        }
+    }
+    
     if ([[NSFileManager defaultManager] fileExistsAtPath:_varPath] && existingPGVersion) {
         if ([installedPGVersion compare:existingPGVersion options:NSNumericSearch] == NSOrderedDescending) {
             if ([[NSFileManager defaultManager] fileExistsAtPath:_varPath]) {
@@ -194,6 +205,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
         xpc_array_set_value(args, XPC_ARRAY_APPEND, xpc_string_create([argument UTF8String]));
     }];
     xpc_dictionary_set_value(message, "arguments", args);
+    xpc_dictionary_set_string(message, "proj_dir", [[[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent:@"proj"] UTF8String]);
     
     xpc_connection_send_message_with_reply(_xpc_connection, message, dispatch_get_main_queue(), ^(xpc_object_t object) {
         NSLog(@"%lld %s: Status %lld", xpc_dictionary_get_int64(object, "pid"), xpc_dictionary_get_string(object, "command"), xpc_dictionary_get_int64(object, "status"));
