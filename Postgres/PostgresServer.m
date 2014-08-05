@@ -115,7 +115,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     NSString *projSrcPath = [[NSString stringWithFormat:@"%@/../share/proj",_binPath] stringByStandardizingPath];
     if (![[NSFileManager defaultManager] fileExistsAtPath:projPath]) {
         NSError *moveErr;
-        [[NSFileManager defaultManager] moveItemAtPath:projSrcPath toPath:projPath error:&moveErr];
+        [[NSFileManager defaultManager] copyItemAtPath:projSrcPath toPath:projPath error:&moveErr];
         if (moveErr) {
             NSLog(@"Error copying %@ to %@", projSrcPath, projPath);
         }
