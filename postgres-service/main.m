@@ -40,6 +40,7 @@ static void postgres_service_peer_event_handler(xpc_connection_t peer, xpc_objec
 		assert(type == XPC_TYPE_DICTIONARY);
 
         NSString *command = [NSString stringWithUTF8String:xpc_dictionary_get_string(event, "command")];
+        NSString *projDir = [NSString stringWithUTF8String: xpc_dictionary_get_string(event, "proj_dir")];
 
         
         NSMutableArray *mutableArguments = [NSMutableArray array];
@@ -60,6 +61,7 @@ static void postgres_service_peer_event_handler(xpc_connection_t peer, xpc_objec
             xpc_dictionary_set_int64(reply, "pid", [task processIdentifier]);
             xpc_connection_send_message(peer, reply);
         };
+        [task setEnvironment:@{@"PROJ_LIB": projDir}];
         [task launch];
 	}
 }
