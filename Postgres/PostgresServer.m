@@ -112,7 +112,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     
     // Ensure gridshift files are in place
     NSString *projPath = [[NSString stringWithFormat:@"%@/../proj",_varPath] stringByStandardizingPath];
-    NSString *projSrcPath = [[NSString stringWithFormat:@"%@/share/proj",_binPath] stringByStandardizingPath];
+    NSString *projSrcPath = [[NSString stringWithFormat:@"%@/../share/proj",_binPath] stringByStandardizingPath];
     if (![[NSFileManager defaultManager] fileExistsAtPath:projPath]) {
         NSError *moveErr;
         [[NSFileManager defaultManager] moveItemAtPath:projSrcPath toPath:projPath error:&moveErr];
