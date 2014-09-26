@@ -2,7 +2,7 @@
 POSTGIS_VERSION=2.1.3
 POSTGIS_MAJOR_VERSION=2.1
 POSTGRES_VERSION=9.3.4
-GDAL_VERSION=1.9.2
+GDAL_VERSION=1.11.1
 GEOS_VERSION=3.4.0
 LIBEDIT_VERSION=20130611-3.1
 LIBUUID_VERSION=1.6.2
@@ -210,12 +210,12 @@ gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/
 	cd gdal-$(GDAL_VERSION) && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pg="$(PREFIX)/bin/pg_config" --with-libgeotiff=internal
 	touch $@
 
-gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
-	$(TAR) gdal-${GDAL_VERSION}.tar.gz
+gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}RC1.tar.gz
+	$(TAR) gdal-${GDAL_VERSION}RC1.tar.gz
 	touch $@	
 
 gdal-${GDAL_VERSION}.tar.gz:
-	$(CURL) "http://download.osgeo.org/gdal/gdal-${GDAL_VERSION}.tar.gz"
+	$(CURL) "http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}RC1.tar.gz"
 
 clean-libgdal:
 	rm -Rf gdal-$(GDAL_VERSION)
