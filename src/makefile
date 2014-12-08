@@ -211,10 +211,10 @@ gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
-	$(TAR) gdal-${GDAL_VERSION}RC1.tar.gz
+	$(TAR) gdal-${GDAL_VERSION}.tar.gz
 	touch $@	
 
-gdal-${GDAL_VERSION}RC1.tar.gz:
+gdal-${GDAL_VERSION}.tar.gz:
 	$(CURL) "http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz"
 
 clean-libgdal:
