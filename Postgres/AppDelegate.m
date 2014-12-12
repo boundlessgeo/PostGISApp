@@ -68,12 +68,23 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     [self.checkForUpdatesMenuItem setEnabled:YES];
     [self.checkForUpdatesMenuItem setHidden:NO];
 #endif
-        
+    NSImage *statusOff = [NSImage imageNamed:@"status-off"];
+    NSImage *statusOn = [NSImage imageNamed:@"status-on"];
+    
+    SInt32 OSXversionMajor, OSXversionMinor;
+    if(Gestalt(gestaltSystemVersionMajor, &OSXversionMajor) == noErr && Gestalt(gestaltSystemVersionMinor, &OSXversionMinor) == noErr)
+    {
+        if(OSXversionMajor == 10 && OSXversionMinor >= 10)
+        {
+            [statusOff setTemplate:YES];
+            [statusOn setTemplate:YES];
+        }
+    }
     _statusBarItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
     _statusBarItem.highlightMode = YES;
     _statusBarItem.menu = self.statusBarMenu;
-    _statusBarItem.image = [NSImage imageNamed:@"status-off"];
-    _statusBarItem.alternateImage = [NSImage imageNamed:@"status-on"];
+    _statusBarItem.image = statusOff;
+    _statusBarItem.alternateImage = statusOn;
 
     [self.automaticallyStartMenuItem setState:PostgresIsHelperApplicationSetAsLoginItem() ? NSOnState : NSOffState];
     
