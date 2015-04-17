@@ -1,5 +1,5 @@
 # VERSION numbers
-POSTGIS_VERSION=2.1.3
+POSTGIS_VERSION=2.1.7
 POSTGIS_MAJOR_VERSION=2.1
 POSTGRES_VERSION=9.3.4
 GDAL_VERSION=1.11.1
@@ -430,7 +430,7 @@ $(PREFIX)/lib/liblwgeom.dylib: postgis-${POSTGIS_VERSION}/GNUMakefile $(PREFIX)/
 $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so: postgis-${POSTGIS_VERSION}/GNUMakefile
 	make -C postgis-${POSTGIS_VERSION}
 	make -C postgis-${POSTGIS_VERSION} install
-	install_name_tool -change $(PROJECT_DIR)/src/SFCGAL-$(SFCGAL_VERSION)/src/libSFCGAL.dylib $(PREFIX)/lib/libSFCGAL.dylib $(PREFIX)/lib/postgis-2.1.so
+	install_name_tool -change $(PROJECT_DIR)/src/SFCGAL-$(SFCGAL_VERSION)/src/libSFCGAL.dylib $(PREFIX)/lib/libSFCGAL.dylib $(PREFIX)/lib/postgis-$(POSTGIS_MAJOR_VERSION).so
 
 postgis-${POSTGIS_VERSION}/GNUMakefile: postgis-${POSTGIS_VERSION}/autogen.sh $(PREFIX)/lib/libgdal.dylib $(PREFIX)/lib/libgeos.dylib $(PREFIX)/bin/psql $(PREFIX)/lib/libjson.dylib
 	cd postgis-${POSTGIS_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" --with-geosconfig="$(PREFIX)/bin/geos-config" --with-projdir="$(PREFIX)" --with-gdaldir="$(PREFIX)" --with-jsondir="$(PREFIX)"
