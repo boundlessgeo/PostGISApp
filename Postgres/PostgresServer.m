@@ -49,6 +49,7 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
 @implementation PostgresServer {
     __strong NSString *_binPath;
     __strong NSString *_varPath;
+    __strong NSString *_altVarPath;
     __strong NSTask *_postgresTask;
     NSUInteger _port;
     
@@ -76,6 +77,15 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     
     _binPath = executablesDirectory;
     _varPath = databaseDirectory;
+    
+    NSString *signedVarPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Containers/com.boundlessgeo.postgis/Data/Library/Application Support/PostGIS/var"];
+    NSString *unsignedVarPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Application Support/PostGIS/var"];
+    
+    if ([_varPath isEqualToString:signedVarPath]) {
+        _altVarPath = unsignedVarPath;
+    } else if ([_varPath isEqualToString:unsignedVarPath]) {
+        _altVarPath = signedVarPath;
+    }
     
     _xpc_connection = xpc_connection_create("com.boundlessgeo.postgis-service", dispatch_get_main_queue());
 	xpc_connection_set_event_handler(_xpc_connection, ^(xpc_object_t event) {        
@@ -106,6 +116,18 @@ static NSString * PGNormalizedVersionStringFromString(NSString *version) {
     
     NSString *existingPGVersion = PGNormalizedVersionStringFromString([NSString stringWithContentsOfFile:[_varPath stringByAppendingPathComponent:@"PG_VERSION"] encoding:NSUTF8StringEncoding error:nil]);
     NSString *installedPGVersion = PGNormalizedVersionStringFromString([NSString stringWithUTF8String:xstr(PG_VERSION)]);
+    NSString *altPGVersion = PGNormalizedVersionStringFromString([NSString stringWithContentsOfFile:[_altVarPath stringByAppendingPathComponent:@"PG_VERSION"] encoding:NSUTF8StringEncoding error:nil]);
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:_altVarPath] && altPGVersion) {
+        if (!existingPGVersion) {
+            NSError *copyErr;
+            [[NSFileManager defaultManager] copyItemAtPath:_altVarPath toPath:_varPath error:&copyErr];
+            if (copyErr) {
+                NSLog(@"Error copying %@ to %@", _altVarPath, _varPath);
+            }
+            existingPGVersion = altPGVersion;
+        }
+    }
     
     NSLog(@"Existing PGVersion: %@", existingPGVersion);
     NSLog(@"Installed PGVersion: %@", installedPGVersion);
