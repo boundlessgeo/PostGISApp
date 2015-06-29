@@ -26,8 +26,8 @@ BOOST_VERSION=1_54_0
 PREFIX=$(PROJECT_DIR)/Postgres/Vendor/postgres
 PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 
-# Force compilers to use OS X 10.7 SDK for better compatibility with older systems
-MIN_OSX=10.7
+# Force compilers to use OS X 10.9 SDK for better compatibility with older systems
+MIN_OSX=10.9
 CFLAGS:=$(CFLAGS) -mmacosx-version-min=$(MIN_OSX)
 CXXFLAGS:=$(CXXFLAGS) -mmacosx-version-min=$(MIN_OSX)
 MACOSX_DEPLOYMENT_TARGET=$(MIN_OSX)

@@ -666,12 +666,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PostgresHelper.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PostgresHelper/PostGISHelper-Prefix.pch";
 				INFOPLIST_FILE = "PostgresHelper/PostGISHelper-Info.plist";
 				PRODUCT_NAME = PostGISHelper;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -681,12 +681,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PostgresHelper.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PostgresHelper/PostGISHelper-Prefix.pch";
 				INFOPLIST_FILE = "PostgresHelper/PostGISHelper-Info.plist";
 				PRODUCT_NAME = PostGISHelper;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 				SKIP_INSTALL = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -715,13 +715,13 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				POSTGIS_VERSION = 2.1.7;
 				POSTGRESAPP_BUILD_VERSION = 14;
 				POSTGRESAPP_MINOR_VERSION = 3;
 				POSTGRES_VERSION = 9.3.5;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 				SUITE_REV = "";
 			};
 			name = Debug;
@@ -743,12 +743,12 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				POSTGIS_VERSION = 2.1.7;
 				POSTGRESAPP_BUILD_VERSION = 14;
 				POSTGRESAPP_MINOR_VERSION = 3;
 				POSTGRES_VERSION = 9.3.5;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 				SUITE_REV = "";
 			};
 			name = Release;
@@ -757,13 +757,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/PostGIS-Prefix.pch";
 				INFOPLIST_FILE = "Postgres/PostGIS-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -772,13 +772,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/PostGIS-Prefix.pch";
 				INFOPLIST_FILE = "Postgres/PostGIS-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -786,13 +786,14 @@
 		F8973A491538851D00EAB41E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "postgres-service/postgres-service-Prefix.pch";
 				INFOPLIST_FILE = "postgres-service/postgres-service-Info.plist";
 				MACH_O_TYPE = mh_execute;
 				POSTGRESAPP_BUILD_VERSION = "";
 				PRODUCT_NAME = "com.boundlessgeo.$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = xpc;
 			};
 			name = Debug;
@@ -800,13 +801,14 @@
 		F8973A4A1538851D00EAB41E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "postgres-service/postgres-service-Prefix.pch";
 				INFOPLIST_FILE = "postgres-service/postgres-service-Info.plist";
 				MACH_O_TYPE = mh_execute;
 				POSTGRESAPP_BUILD_VERSION = "";
 				PRODUCT_NAME = "com.boundlessgeo.$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = xpc;
 			};
 			name = Release;
