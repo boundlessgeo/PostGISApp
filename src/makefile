@@ -28,8 +28,8 @@ PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
 
 # Force compilers to use OS X 10.9 SDK for better compatibility with older systems
 MIN_OSX=10.9
-CFLAGS:=$(CFLAGS) -mmacosx-version-min=$(MIN_OSX)
-CXXFLAGS:=$(CXXFLAGS) -mmacosx-version-min=$(MIN_OSX)
+CFLAGS:=$(CFLAGS) -mmacosx-version-min=$(MIN_OSX) -arch x86_64
+CXXFLAGS:=$(CXXFLAGS) -mmacosx-version-min=$(MIN_OSX) -arch x86_64
 MACOSX_DEPLOYMENT_TARGET=$(MIN_OSX)
 
 export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
