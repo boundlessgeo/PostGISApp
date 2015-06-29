@@ -463,12 +463,13 @@ pointcloud-${POINTCLOUD_VERSION}/GNUMakefile: pointcloud-${POINTCLOUD_VERSION}/a
 	cd pointcloud-${POINTCLOUD_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" #--with-libght=${PREFIX}
 	touch $@
 
-pointcloud-${POINTCLOUD_VERSION}/autogen.sh: pointcloud-${POINTCLOUD_VERSION}.tar.gz
-	$(TAR) $<
+pointcloud-${POINTCLOUD_VERSION}/autogen.sh: pointcloud-${POINTCLOUD_VERSION}.zip
+	unzip pointcloud-${POINTCLOUD_VERSION}.zip
 	touch $@
 
-pointcloud-${POINTCLOUD_VERSION}.tar.gz:
+pointcloud-${POINTCLOUD_VERSION}.zip:
 	$(CURL) "https://github.com/pgpointcloud/pointcloud/archive/${POINTCLOUD_VERSION}.zip"
+	cp ${POINTCLOUD_VERSION}.zip pointcloud-${POINTCLOUD_VERSION}.zip
 
 clean-pointcloud:
 	rm -Rf pointcloud-${POINTCLOUD_VERSION}
