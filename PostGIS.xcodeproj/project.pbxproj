@@ -666,7 +666,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PostgresHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PostgresHelper/PostGISHelper-Prefix.pch";
 				INFOPLIST_FILE = "PostgresHelper/PostGISHelper-Info.plist";
@@ -681,7 +681,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PostgresHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PostgresHelper/PostGISHelper-Prefix.pch";
 				INFOPLIST_FILE = "PostgresHelper/PostGISHelper-Info.plist";
@@ -757,7 +757,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/PostGIS-Prefix.pch";
 				INFOPLIST_FILE = "Postgres/PostGIS-Info.plist";
@@ -772,7 +772,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/PostGIS-Prefix.pch";
 				INFOPLIST_FILE = "Postgres/PostGIS-Info.plist";
@@ -786,7 +786,7 @@
 		F8973A491538851D00EAB41E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "postgres-service/postgres-service-Prefix.pch";
 				INFOPLIST_FILE = "postgres-service/postgres-service-Info.plist";
@@ -801,7 +801,7 @@
 		F8973A4A1538851D00EAB41E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "postgres-service/postgres-service-Prefix.pch";
 				INFOPLIST_FILE = "postgres-service/postgres-service-Info.plist";
