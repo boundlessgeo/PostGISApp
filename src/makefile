@@ -15,7 +15,7 @@ LIBTIFF_VERSION=4.0.3
 LIBLAS_VERSION=1.7.0
 LASZIP_VERSION=2.2.0
 GHT_VERSION=0.1.0
-POINTCLOUD_VERSION=0.1.0
+POINTCLOUD_VERSION=1.0.x
 CGAL_VERSION=4.2
 SFCGAL_VERSION=1.0
 GMP_VERSION=5.1.2
@@ -468,8 +468,8 @@ pointcloud-${POINTCLOUD_VERSION}/autogen.sh: pointcloud-${POINTCLOUD_VERSION}.ta
 	touch $@
 
 pointcloud-${POINTCLOUD_VERSION}.tar.gz:
-	$(CURL) "https://github.com/pramsey/pointcloud/archive/v${POINTCLOUD_VERSION}.tar.gz"
-	mv v${POINTCLOUD_VERSION}.tar.gz pointcloud-${POINTCLOUD_VERSION}.tar.gz
+	$(CURL) "https://github.com/pgpointcloud/pointcloud/archive/${POINTCLOUD_VERSION}.zip"
+	mv ${POINTCLOUD_VERSION}.tar.gz pointcloud-${POINTCLOUD_VERSION}.tar.gz
 
 clean-pointcloud:
 	rm -Rf pointcloud-${POINTCLOUD_VERSION}
