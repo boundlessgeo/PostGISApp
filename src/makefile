@@ -469,7 +469,6 @@ pointcloud-${POINTCLOUD_VERSION}/autogen.sh: pointcloud-${POINTCLOUD_VERSION}.ta
 
 pointcloud-${POINTCLOUD_VERSION}.tar.gz:
 	$(CURL) "https://github.com/pgpointcloud/pointcloud/archive/${POINTCLOUD_VERSION}.zip"
-	mv ${POINTCLOUD_VERSION}.tar.gz pointcloud-${POINTCLOUD_VERSION}.tar.gz
 
 clean-pointcloud:
 	rm -Rf pointcloud-${POINTCLOUD_VERSION}
