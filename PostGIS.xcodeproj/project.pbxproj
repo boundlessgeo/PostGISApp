@@ -414,6 +414,17 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				TargetAttributes = {
+					F87A426C153AB60C00456130 = {
+						DevelopmentTeam = 82EPDLMXNS;
+					};
+					F8973A071538846600EAB41E = {
+						DevelopmentTeam = 82EPDLMXNS;
+					};
+					F8973A3B1538851D00EAB41E = {
+						DevelopmentTeam = 82EPDLMXNS;
+					};
+				};
 			};
 			buildConfigurationList = F8973A021538846600EAB41E /* Build configuration list for PBXProject "PostGIS" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -627,6 +638,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEBUGGING_SYMBOLS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -653,6 +665,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = "";
@@ -666,7 +679,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PostgresHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PostgresHelper/PostGISHelper-Prefix.pch";
 				INFOPLIST_FILE = "PostgresHelper/PostGISHelper-Info.plist";
@@ -681,7 +694,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = PostgresHelper.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PostgresHelper/PostGISHelper-Prefix.pch";
 				INFOPLIST_FILE = "PostgresHelper/PostGISHelper-Info.plist";
@@ -757,11 +770,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/PostGIS-Prefix.pch";
 				INFOPLIST_FILE = "Postgres/PostGIS-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
@@ -772,11 +785,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Postgres/Postgres.entitlements;
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Postgres/PostGIS-Prefix.pch";
 				INFOPLIST_FILE = "Postgres/PostGIS-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
@@ -786,7 +799,7 @@
 		F8973A491538851D00EAB41E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "postgres-service/postgres-service-Prefix.pch";
 				INFOPLIST_FILE = "postgres-service/postgres-service-Info.plist";
@@ -801,7 +814,7 @@
 		F8973A4A1538851D00EAB41E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Developer ID Application: Boundless Spatial, Inc. (82EPDLMXNS)";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "postgres-service/postgres-service-Prefix.pch";
 				INFOPLIST_FILE = "postgres-service/postgres-service-Info.plist";
