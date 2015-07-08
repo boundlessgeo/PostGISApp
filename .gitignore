@@ -3,3 +3,4 @@ src/*
 Postgres/Vendor/postgres/*
 .DS_Store
 xcuserdata
+PostGIS.xccheckout
