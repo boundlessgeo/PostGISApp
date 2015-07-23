@@ -59,7 +59,7 @@ $(PREFIX)/bin/psql: postgresql-$(POSTGRES_VERSION)/GNUmakefile
 # the --with-includes and --with-libraries options are necessary so
 # that postgres will be compiled and linked against our own versions
 # of libraries like openssl, instead of system provided versions
-postgresql-$(POSTGRES_VERSION)/GNUmakefile: $(PREFIX)/lib/libssl.dylib $(PREFIX)/lib/libxml2.dylib $(PREFIX)/lib/libedit.dylib ${PREFIX}/include/uuid.h postgresql-$(POSTGRES_VERSION)/configure 
+postgresql-$(POSTGRES_VERSION)/GNUmakefile: $(PREFIX)/lib/libssl.dylib $(PREFIX)/lib/libxml2.dylib $(PREFIX)/lib/libedit.dylib ${PREFIX}/include/uuid.h postgresql-$(POSTGRES_VERSION)/configure
 	cd "postgresql-$(POSTGRES_VERSION)" && export PATH="$(PREFIX)/bin:$$PATH" && ./configure --prefix="$(PREFIX)" --with-includes="$(PREFIX)/include" --with-libraries="$(PREFIX)/lib" --enable-thread-safety --with-openssl --with-gssapi --with-bonjour --with-krb5 --with-libxml --with-libxslt --with-perl --with-python --with-libedit-preferred --with-ossp-uuid
 
 # after extracting PostgreSQL sources, we must patch uuid-ossp so it builds on OSX
@@ -70,9 +70,9 @@ postgresql-$(POSTGRES_VERSION)/configure: postgresql-$(POSTGRES_VERSION).tar.bz2
 	mv "postgresql-$(POSTGRES_VERSION)/contrib/uuid-ossp/uuid-ossp.c.patched" "postgresql-$(POSTGRES_VERSION)/contrib/uuid-ossp/uuid-ossp.c"
 	touch $@
 
-postgresql-$(POSTGRES_VERSION).tar.bz2:	
+postgresql-$(POSTGRES_VERSION).tar.bz2:
 	$(CURL) "http://ftp.postgresql.org/pub/source/v$(POSTGRES_VERSION)/postgresql-$(POSTGRES_VERSION).tar.bz2"
-	
+
 clean-postgresql:
 	rm -Rf postgresql-$(POSTGRES_VERSION)
 
@@ -92,13 +92,13 @@ ${PREFIX}/include/uuid.h: uuid-${LIBUUID_VERSION}
 	make -C uuid-${LIBUUID_VERSION}
 	make -C uuid-${LIBUUID_VERSION} install
 	touch ${PREFIX}/include/uuid.h
-	
+
 libuuid: ${PREFIX}/include/uuid.h
 
 clean-libuuid:
 	rm -Rf "uuid-${LIBUUID_VERSION}"
-	
-	
+
+
 #########################
 ####### OpenSSL #########
 #########################
@@ -118,7 +118,7 @@ openssl-${OPENSSL_VERSION}/Configure: openssl-${OPENSSL_VERSION}.tar.gz
 
 openssl-${OPENSSL_VERSION}.tar.gz:
 	$(CURL) "http://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz"
-	
+
 clean-openssl:
 	rm -Rf "openssl-${OPENSSL_VERSION}"
 
@@ -139,10 +139,10 @@ libxml2-${LIBXML2_VERSION}/Makefile: libxml2-${LIBXML2_VERSION}/configure
 libxml2-${LIBXML2_VERSION}/configure: libxml2-${LIBXML2_VERSION}.tar.gz
 	$(TAR) libxml2-${LIBXML2_VERSION}.tar.gz
 	touch $@
-	
+
 libxml2-${LIBXML2_VERSION}.tar.gz:
 	$(CURL) "ftp://xmlsoft.org/libxml2/libxml2-${LIBXML2_VERSION}.tar.gz"
-	
+
 clean-libxml2:
 	rm -Rf "libxml2-$(LIBXML2_VERSION)"
 
@@ -212,7 +212,7 @@ gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
 	$(TAR) gdal-${GDAL_VERSION}.tar.gz
-	touch $@	
+	touch $@
 
 gdal-${GDAL_VERSION}.tar.gz:
 	$(CURL) "http://download.osgeo.org/gdal/${GDAL_VERSION}/gdal-${GDAL_VERSION}.tar.gz"
@@ -245,7 +245,7 @@ proj-${PROJ_VERSION}.tar.gz:
 
 proj-datumgrid-${DATUMGRID_VERSION}.zip:
 	$(CURL) "http://download.osgeo.org/proj/proj-datumgrid-${DATUMGRID_VERSION}.zip"
-	
+
 clean-libproj:
 	rm -Rf proj-${PROJ_VERSION}
 
@@ -338,7 +338,7 @@ mpfr-$(MPFR_VERSION).tar.bz2:
 
 clean-mpfr:
 	rm -Rf mpfr-$(MPFR_VERSION)
-	
+
 #########################
 ####### BOOST ###########
 #########################
@@ -509,7 +509,7 @@ $(PREFIX)/lib/liblas.${LIBLAS_VERSION}.dylib: libLAS-${LIBLAS_VERSION}/Makefile
 libLAS-${LIBLAS_VERSION}/Makefile: libLAS-${LIBLAS_VERSION}/CMakeLists.txt $(PREFIX)/lib/liblaszip.dylib
 	cd libLAS-${LIBLAS_VERSION} && cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX="$(PREFIX)" \
 	-DWITH_LASZIP=yes -DLASZIP_INCLUDE_DIR=../laszip-src-2.2.0/include/ -DLASZIP_LIBRARY=$(PREFIX)/lib/liblaszip.dylib
-	
+
 
 libLAS-${LIBLAS_VERSION}/CMakeLists.txt: libLAS-${LIBLAS_VERSION}.tar.gz
 	$(TAR) libLAS-${LIBLAS_VERSION}.tar.gz
