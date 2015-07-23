@@ -207,7 +207,7 @@ $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	make -C gdal-$(GDAL_VERSION) install
 
 gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/libproj.dylib $(PREFIX)/bin/psql  $(PREFIX)/lib/libgeos.dylib # $(PREFIX)/lib/libtiff.dylib
-	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-pg="$(PREFIX)/bin/pg_config" --with-libgeotiff=internal --with-libjson-c=$(PREFIX)
+	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-pg="$(PREFIX)/bin/pg_config" --with-libgeotiff=internal --with-libjson-c=$(PREFIX) --without-pcre
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
