@@ -24,7 +24,7 @@ BOOST_VERSION=1_54_0
 
 #path configuration
 PREFIX=$(PROJECT_DIR)/Postgres/Vendor/postgres
-PATH=$(PREFIX)/bin:/bin:/usr/bin:/opt/local/bin
+PATH=$(PREFIX)/bin:/bin:/usr/bin:/usr/local/bin
 
 # Force compilers to use OS X 10.9 SDK for better compatibility with older systems
 MIN_OSX=10.9
@@ -39,7 +39,7 @@ CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
 all: postgresql postgis pointcloud
-clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libgeos clean-libtiff
+clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libgeos clean-libtiff clean-json-c
 
 #########################
 ###### PostgreSQL #######
@@ -204,9 +204,10 @@ clean-libgeos:
 libgdal: $(PREFIX)/lib/libgdal.dylib
 
 $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
+	touch gdal-$(GDAL_VERSION)/config.rpath
 	make -C gdal-$(GDAL_VERSION) install
 
-gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/libproj.dylib $(PREFIX)/bin/psql  $(PREFIX)/lib/libgeos.dylib # $(PREFIX)/lib/libtiff.dylib
+gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/libjson.dylib $(PREFIX)/lib/libproj.dylib $(PREFIX)/bin/psql  $(PREFIX)/lib/libgeos.dylib # $(PREFIX)/lib/libtiff.dylib
 	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-pg="$(PREFIX)/bin/pg_config" --with-libgeotiff=internal --with-libjson-c=$(PREFIX) --without-pcre
 	touch $@
 
@@ -271,6 +272,9 @@ json-c-$(JSONC_VERSION)/configure: json-c-$(JSONC_VERSION).tar.gz
 
 json-c-$(JSONC_VERSION).tar.gz:
 	$(CURL) "https://s3.amazonaws.com/json-c_releases/releases/json-c-$(JSONC_VERSION).tar.gz"
+
+clean-json-c:
+	rm -Rf json-c-$(JSONC_VERSION)
 
 
 #########################
