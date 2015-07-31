@@ -2,8 +2,6 @@
 
 set +e
 
-KEYCHAIN_PASSWORD=jenkins78902
-
 ORIG_INSTALL_ROOT="${PROJECT_DIR}/Postgres/Vendor/postgres"
 POSTGRES_ENTITLEMENTS="${PROJECT_DIR}/Postgres/Postgres-extras.entitlements"
 EXECUTABLE_TARGET_DIR="$BUILT_PRODUCTS_DIR/$EXECUTABLE_FOLDER_PATH"
@@ -50,7 +48,7 @@ do
 done
 
 # codesign copied Mach-O files and scripts
-security unlock -p $KEYCHAIN_PASSWORD $HOME/Library/Keychains/login.keychain
+#security unlock -p $KEYCHAIN_PASSWORD $HOME/Library/Keychains/login.keychain
 for afile in "lib/pgxs/config/install-sh" "lib/pgxs/src/test/regress/pg_regress" "lib/"*.dylib "lib/"*.so "bin/"*
 do
     codesign --force --keychain $HOME/Library/Keychains/login.keychain \
