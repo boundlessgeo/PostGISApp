@@ -34,23 +34,26 @@ prefix_length=${#prefix}
 # fix library ids
 for libfile in "lib/"*
 do
-    library_id=$(otool -D $libfile | grep "$prefix");
-    if [[ -n "$library_id" ]]
-    then
-        new_library_id="@loader_path/.."${library_id:$prefix_length}
-        install_name_tool -id "$new_library_id" "$libfile"
-        # fix library references
-        for afile in "lib/"*.dylib "lib/"*.so "bin/"*
-        do
-            install_name_tool -change $library_id $new_library_id $afile 2> /dev/null
-        done
-    fi
+  if [[ ! -f $file ]]; then
+    continue
+  fi
+  library_id=$(otool -D $libfile | grep "$prefix");
+  if [[ -n "$library_id" ]]
+  then
+    new_library_id="@loader_path/.."${library_id:$prefix_length}
+    install_name_tool -id "$new_library_id" "$libfile"
+    # fix library references
+    for afile in "lib/"*.dylib "lib/"*.so "bin/"*
+    do
+      install_name_tool -change $library_id $new_library_id $afile 2> /dev/null
+    done
+  fi
 done
 
 # codesign copied Mach-O files and scripts
 #security unlock -p $KEYCHAIN_PASSWORD $HOME/Library/Keychains/login.keychain
 for afile in "lib/pgxs/config/install-sh" "lib/pgxs/src/test/regress/pg_regress" "lib/"*.dylib "lib/"*.so "bin/"*
 do
-    codesign --force --keychain $HOME/Library/Keychains/login.keychain \
-      --timestamp --verbose -s AD305D96B9F8DC4BAD13F046AF063BF8EC6EB8DE "$afile"
+  codesign --force --keychain $HOME/Library/Keychains/login.keychain \
+    --timestamp --verbose -s AD305D96B9F8DC4BAD13F046AF063BF8EC6EB8DE "$afile"
 done
