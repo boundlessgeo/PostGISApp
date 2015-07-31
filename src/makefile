@@ -44,7 +44,7 @@ TAR=/usr/bin/tar xzf
 
 all: postgresql postgis pointcloud
 clean:
-clean-deps: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libgeos clean-libtiff clean-json-c
+clean-deps: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgeos clean-libgdal clean-libproj clean-json-c clean-libtiff clean-gmp clean-mpfr clean-boost clean-cgal clean-sfcgal clean-postgis clean-pointcloud clean-ght clean-liblas clean-laszip
 
 #########################
 ###### PostgreSQL #######
