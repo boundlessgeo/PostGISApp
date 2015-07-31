@@ -26,7 +26,12 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    [[NSWorkspace sharedWorkspace] launchApplication:@"/Applications/Postgres.app"];
+    NSString *basePath = [[NSBundle mainBundle] bundlePath];
+    NSString *path = [basePath stringByDeletingLastPathComponent];
+    path = [path stringByDeletingLastPathComponent];
+    path = [path stringByDeletingLastPathComponent];
+    path = [path stringByDeletingLastPathComponent];
+    [[NSWorkspace sharedWorkspace] launchApplication:path];
 //    [[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.heroku.Postgres" options:NSWorkspaceLaunchWithoutAddingToRecents | NSWorkspaceLaunchWithoutActivation | NSWorkspaceLaunchAndHide additionalEventParamDescriptor:nil launchIdentifier:NULL];
     [NSApp terminate:self];
 }
