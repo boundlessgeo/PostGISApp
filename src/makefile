@@ -1,3 +1,5 @@
+# REQUIRES env vars: PROJECT_DIR, PREFIX
+
 # VERSION numbers
 POSTGIS_VERSION=2.1.7
 POSTGIS_MAJOR_VERSION=2.1
@@ -34,12 +36,15 @@ MACOSX_DEPLOYMENT_TARGET=$(MIN_OSX)
 
 export CFLAGS CXXFLAGS MACOSX_DEPLOYMENT_TARGET
 
+CORES=$(shell /usr/sbin/sysctl -n hw.ncpu)
+
 # commands used for downloading and extracting sources
 CURL=/usr/bin/curl -L10 --silent --show-error --remote-name
 TAR=/usr/bin/tar xzf
 
 all: postgresql postgis pointcloud
-clean: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libgeos clean-libtiff clean-json-c
+clean:
+clean-deps: clean-postgresql clean-libuuid clean-openssl clean-libxml2 clean-libedit clean-libgdal clean-libproj clean-postgis clean-libgeos clean-libtiff clean-json-c
 
 #########################
 ###### PostgreSQL #######
@@ -129,7 +134,7 @@ clean-openssl:
 libxml2: $(PREFIX)/lib/libxml2.dylib
 
 $(PREFIX)/lib/libxml2.dylib: libxml2-${LIBXML2_VERSION}/Makefile
-	make -C libxml2-${LIBXML2_VERSION} install-exec
+	make -j $(CORES) -C libxml2-${LIBXML2_VERSION} install-exec
 	make -C libxml2-${LIBXML2_VERSION}/include install
 	touch $(PREFIX)/lib/libxml2.dylib
 
@@ -153,7 +158,7 @@ clean-libxml2:
 libedit: $(PREFIX)/lib/libedit.dylib
 
 $(PREFIX)/lib/libedit.dylib: libedit-$(LIBEDIT_VERSION)/Makefile
-	make -C "libedit-$(LIBEDIT_VERSION)" install
+	make -j $(CORES) -C "libedit-$(LIBEDIT_VERSION)" install
 
 libedit-$(LIBEDIT_VERSION)/Makefile: libedit-$(LIBEDIT_VERSION)/configure
 	cd libedit-$(LIBEDIT_VERSION) && ./configure --prefix="$(PREFIX)"
@@ -177,7 +182,7 @@ clean-libedit:
 libgeos: $(PREFIX)/lib/libgeos.dylib
 
 $(PREFIX)/lib/libgeos.dylib: geos-${GEOS_VERSION}/Makefile
-	make -C geos-${GEOS_VERSION} install
+	make -j $(CORES) -C geos-${GEOS_VERSION} install
 
 geos-${GEOS_VERSION}/Makefile: geos-${GEOS_VERSION}/configure $(PREFIX)/bin/psql
 	cd geos-${GEOS_VERSION} && ./configure --prefix="$(PREFIX)"
@@ -205,6 +210,8 @@ libgdal: $(PREFIX)/lib/libgdal.dylib
 
 $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
 	touch gdal-$(GDAL_VERSION)/config.rpath
+	chmod u+x gdal-$(GDAL_VERSION)/config.rpath
+	make -j $(CORES) -C gdal-$(GDAL_VERSION)
 	make -C gdal-$(GDAL_VERSION) install
 
 gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/libjson.dylib $(PREFIX)/lib/libproj.dylib $(PREFIX)/bin/psql  $(PREFIX)/lib/libgeos.dylib # $(PREFIX)/lib/libtiff.dylib
