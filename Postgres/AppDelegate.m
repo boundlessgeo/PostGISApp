@@ -148,12 +148,12 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
 - (IBAction)selectAutomaticallyStart:(id)sender {
     [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
     
-    NSURL *helperApplicationURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/PostgresHelper.app"];
+    NSURL *helperApplicationURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/PostGISHelper.app"];
     if (LSRegisterURL((__bridge CFURLRef)helperApplicationURL, true) != noErr) {
         NSLog(@"LSRegisterURL Failed");
     }
     
-    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.PostgresHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
+    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.PostGISHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
         NSLog(@"SMLoginItemSetEnabled Failed");
     }
 }
