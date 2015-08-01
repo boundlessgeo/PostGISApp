@@ -209,13 +209,13 @@ clean-libgeos:
 libgdal: $(PREFIX)/lib/libgdal.dylib
 
 $(PREFIX)/lib/libgdal.dylib: gdal-$(GDAL_VERSION)/GNUMakefile
-	touch gdal-$(GDAL_VERSION)/config.rpath
-	chmod u+x gdal-$(GDAL_VERSION)/config.rpath
-	make -j $(CORES) -C gdal-$(GDAL_VERSION)
+	make -C gdal-$(GDAL_VERSION)
 	make -C gdal-$(GDAL_VERSION) install
 
 gdal-$(GDAL_VERSION)/GNUMakefile: gdal-$(GDAL_VERSION)/autogen.sh $(PREFIX)/lib/libjson.dylib $(PREFIX)/lib/libproj.dylib $(PREFIX)/bin/psql  $(PREFIX)/lib/libgeos.dylib # $(PREFIX)/lib/libtiff.dylib
-	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-pg="$(PREFIX)/bin/pg_config" --with-libgeotiff=internal --with-libjson-c=$(PREFIX) --without-pcre
+	touch gdal-$(GDAL_VERSION)/config.rpath
+	chmod u+x gdal-$(GDAL_VERSION)/config.rpath
+	cd gdal-$(GDAL_VERSION) && ./configure --prefix="$(PREFIX)" --with-pg="$(PREFIX)/bin/pg_config" --with-libgeotiff=internal --with-libjson-c=$(PREFIX) --with-sqlite3=/usr --without-pcre
 	touch $@
 
 gdal-$(GDAL_VERSION)/autogen.sh: gdal-${GDAL_VERSION}.tar.gz
