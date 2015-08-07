@@ -34,7 +34,7 @@ prefix_length=${#prefix}
 # fix library ids
 for libfile in "lib/"*
 do
-  if [[ ! -f $file ]]; then
+  if [[ ! -f $libfile ]]; then
     continue
   fi
   library_id=$(otool -D $libfile | grep "$prefix");
