@@ -17,7 +17,7 @@ LIBTIFF_VERSION=4.0.3
 LIBLAS_VERSION=1.7.0
 LASZIP_VERSION=2.2.0
 GHT_VERSION=0.1.0
-POINTCLOUD_VERSION=a94e4c045decb2a5130273cbdb18c10cd6301589
+POINTCLOUD_VERSION=1.0.1
 CGAL_VERSION=4.2
 SFCGAL_VERSION=1.0
 GMP_VERSION=5.1.2
@@ -479,8 +479,8 @@ pointcloud-${POINTCLOUD_VERSION}/autogen.sh: pointcloud-${POINTCLOUD_VERSION}.zi
 	touch $@
 
 pointcloud-${POINTCLOUD_VERSION}.zip:
-	$(CURL) "https://github.com/pgpointcloud/pointcloud/archive/${POINTCLOUD_VERSION}.zip"
-	cp ${POINTCLOUD_VERSION}.zip pointcloud-${POINTCLOUD_VERSION}.zip
+	$(CURL) "https://github.com/pgpointcloud/pointcloud/archive/v${POINTCLOUD_VERSION}.zip"
+	mv v${POINTCLOUD_VERSION}.zip pointcloud-${POINTCLOUD_VERSION}.zip
 
 clean-pointcloud:
 	rm -Rf pointcloud-${POINTCLOUD_VERSION}
