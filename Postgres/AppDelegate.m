@@ -38,7 +38,7 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     BOOL flag = NO;
     NSArray *jobs = (__bridge NSArray *)SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
     for (NSDictionary *job in jobs) {
-        if ([[job valueForKey:@"Label"] isEqualToString:@"com.boundlessgeo.PostgresHelper"]) {
+        if ([[job valueForKey:@"Label"] isEqualToString:@"com.boundlessgeo.PostGISHelper"]) {
             flag = YES;
         }
     }
