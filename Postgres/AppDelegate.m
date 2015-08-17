@@ -34,11 +34,11 @@
 #import <Sparkle/Sparkle.h>
 #endif
 
-static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
+static BOOL PostgresIsHelperApplicationSetAsLoginItem(NSString * helper) {
     BOOL flag = NO;
     NSArray *jobs = (__bridge NSArray *)SMCopyAllJobDictionaries(kSMDomainUserLaunchd);
     for (NSDictionary *job in jobs) {
-        if ([[job valueForKey:@"Label"] isEqualToString:@"com.boundlessgeo.PostGISHelper"]) {
+        if ([[job valueForKey:@"Label"] isEqualToString:helper]) {
             flag = YES;
         }
     }
@@ -91,8 +91,12 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     // clear all previous Automatically start at login helpers
     NSArray *helpers = @[@"com.boundlessgeo.PostGISHelper", @"com.boundlessgeo.PostgresHelper"];
     for (NSString *helper in helpers) {
-        if (SMLoginItemSetEnabled((__bridge CFStringRef)helper, NO)) {
-            NSLog(@"SMLoginItemSetEnabled for %@ set to NO", helper);
+        if (PostgresIsHelperApplicationSetAsLoginItem(helper)) {
+            if (SMLoginItemSetEnabled((__bridge CFStringRef)helper, NO)) {
+                NSLog(@"SMLoginItemSetEnabled for %@ set to NO", helper);
+            } else {
+                NSLog(@"SMLoginItemSetEnabled for %@ could NOT be set to NO", helper);
+            }
         }
     }
     
