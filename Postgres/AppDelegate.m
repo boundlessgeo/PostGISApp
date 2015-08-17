@@ -58,7 +58,7 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
 @synthesize postgresStatusMenuItemViewController = _postgresStatusMenuItemViewController;
 @synthesize statusBarMenu = _statusBarMenu;
 @synthesize postgresStatusMenuItem = _postgresStatusMenuItem;
-@synthesize automaticallyStartMenuItem = _automaticallyStartMenuItem;
+//@synthesize automaticallyStartMenuItem = _automaticallyStartMenuItem;
 @synthesize checkForUpdatesMenuItem = _checkForUpdatesMenuItem;
 
 #pragma mark - NSApplicationDelegate
@@ -86,7 +86,15 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
     _statusBarItem.image = statusOff;
     _statusBarItem.alternateImage = statusOn;
 
-    [self.automaticallyStartMenuItem setState:PostgresIsHelperApplicationSetAsLoginItem() ? NSOnState : NSOffState];
+//    [self.automaticallyStartMenuItem setState:PostgresIsHelperApplicationSetAsLoginItem() ? NSOnState : NSOffState];
+    
+    // clear all previous Automatically start at login helpers
+    NSArray *helpers = @[@"com.boundlessgeo.PostGISHelper", @"com.boundlessgeo.PostgresHelper"];
+    for (NSString *helper in helpers) {
+        if (SMLoginItemSetEnabled((__bridge CFStringRef)helper, NO)) {
+            NSLog(@"SMLoginItemSetEnabled for %@ set to NO", helper);
+        }
+    }
     
     [[PostgresServer sharedServer] setMigrationDelegate:self];
     [[PostgresServer sharedServer] startOnPort:kPostgresAppDefaultPort terminationHandler:^(NSUInteger status) {
@@ -146,16 +154,16 @@ static BOOL PostgresIsHelperApplicationSetAsLoginItem() {
 
 
 - (IBAction)selectAutomaticallyStart:(id)sender {
-    [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
-    
-    NSURL *helperApplicationURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/PostGISHelper.app"];
-    if (LSRegisterURL((__bridge CFURLRef)helperApplicationURL, true) != noErr) {
-        NSLog(@"LSRegisterURL Failed");
-    }
-    
-    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.PostGISHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
-        NSLog(@"SMLoginItemSetEnabled Failed");
-    }
+//    [self.automaticallyStartMenuItem setState:![self.automaticallyStartMenuItem state]];
+//    
+//    NSURL *helperApplicationURL = [[[NSBundle mainBundle] bundleURL] URLByAppendingPathComponent:@"Contents/Library/LoginItems/PostGISHelper.app"];
+//    if (LSRegisterURL((__bridge CFURLRef)helperApplicationURL, true) != noErr) {
+//        NSLog(@"LSRegisterURL Failed");
+//    }
+//    
+//    if (!SMLoginItemSetEnabled((__bridge CFStringRef)@"com.boundlessgeo.PostGISHelper", [self.automaticallyStartMenuItem state] == NSOnState)) {
+//        NSLog(@"SMLoginItemSetEnabled Failed");
+//    }
 }
 
 - (IBAction)selectOpenLogFile:(id)sender {
