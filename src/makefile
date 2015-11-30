@@ -133,7 +133,6 @@ libxml2: $(PREFIX)/lib/libxml2.dylib
 $(PREFIX)/lib/libxml2.dylib: libxml2-${LIBXML2_VERSION}/Makefile
 	make -j $(CORES) -C libxml2-${LIBXML2_VERSION} install-exec
 	make -C libxml2-${LIBXML2_VERSION}/include install
-	echo $(PREFIX)
 	touch $(PREFIX)/lib/libxml2.dylib
 
 libxml2-${LIBXML2_VERSION}/Makefile: libxml2-${LIBXML2_VERSION}/configure
