@@ -4,8 +4,8 @@
 POSTGIS_VERSION=2.2.0
 POSTGIS_MAJOR_VERSION=2.2
 POSTGRES_VERSION=9.4.5
-GDAL_VERSION=1.11.1
-GEOS_VERSION=3.4.0
+GDAL_VERSION=1.11.2
+GEOS_VERSION=3.4.2
 LIBEDIT_VERSION=20130611-3.1
 LIBUUID_VERSION=1.6.2
 LIBXML2_VERSION=2.9.1
@@ -67,10 +67,10 @@ $(PREFIX)/bin/psql: postgresql-$(POSTGRES_VERSION)/GNUmakefile
 postgresql-$(POSTGRES_VERSION)/GNUmakefile: $(PREFIX)/lib/libssl.dylib $(PREFIX)/lib/libxml2.dylib $(PREFIX)/lib/libedit.dylib ${PREFIX}/include/uuid.h postgresql-$(POSTGRES_VERSION)/configure
 	cd "postgresql-$(POSTGRES_VERSION)" && export PATH="$(PREFIX)/bin:$$PATH" && ./configure --prefix="$(PREFIX)" --with-includes="$(PREFIX)/include" --with-libraries="$(PREFIX)/lib" --enable-thread-safety --with-openssl --with-gssapi --with-bonjour --with-krb5 --with-libxml --with-libxslt --with-perl --with-python --with-libedit-preferred --with-uuid=e2fs
 
-# after extracting PostgreSQL sources, we must patch uuid-ossp so it builds on OSX
 #ossp no longer builds with 9.4.x+, use e2fs-libuuid 
 postgresql-$(POSTGRES_VERSION)/configure: postgresql-$(POSTGRES_VERSION).tar.bz2
 	$(TAR) "postgresql-$(POSTGRES_VERSION).tar.bz2"
+	touch $@	
 
 postgresql-$(POSTGRES_VERSION).tar.bz2:
 	$(CURL) "http://ftp.postgresql.org/pub/source/v$(POSTGRES_VERSION)/postgresql-$(POSTGRES_VERSION).tar.bz2"
