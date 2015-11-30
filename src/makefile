@@ -1,9 +1,9 @@
 # REQUIRES env vars: PROJECT_DIR, PREFIX
 
 # VERSION numbers
-POSTGIS_VERSION=2.1.7
-POSTGIS_MAJOR_VERSION=2.1
-POSTGRES_VERSION=9.3.4
+POSTGIS_VERSION=2.2.0
+POSTGIS_MAJOR_VERSION=2.2
+POSTGRES_VERSION=9.4.5
 GDAL_VERSION=1.11.1
 GEOS_VERSION=3.4.0
 LIBEDIT_VERSION=20130611-3.1
@@ -65,15 +65,12 @@ $(PREFIX)/bin/psql: postgresql-$(POSTGRES_VERSION)/GNUmakefile
 # that postgres will be compiled and linked against our own versions
 # of libraries like openssl, instead of system provided versions
 postgresql-$(POSTGRES_VERSION)/GNUmakefile: $(PREFIX)/lib/libssl.dylib $(PREFIX)/lib/libxml2.dylib $(PREFIX)/lib/libedit.dylib ${PREFIX}/include/uuid.h postgresql-$(POSTGRES_VERSION)/configure
-	cd "postgresql-$(POSTGRES_VERSION)" && export PATH="$(PREFIX)/bin:$$PATH" && ./configure --prefix="$(PREFIX)" --with-includes="$(PREFIX)/include" --with-libraries="$(PREFIX)/lib" --enable-thread-safety --with-openssl --with-gssapi --with-bonjour --with-krb5 --with-libxml --with-libxslt --with-perl --with-python --with-libedit-preferred --with-ossp-uuid
+	cd "postgresql-$(POSTGRES_VERSION)" && export PATH="$(PREFIX)/bin:$$PATH" && ./configure --prefix="$(PREFIX)" --with-includes="$(PREFIX)/include" --with-libraries="$(PREFIX)/lib" --enable-thread-safety --with-openssl --with-gssapi --with-bonjour --with-krb5 --with-libxml --with-libxslt --with-perl --with-python --with-libedit-preferred --with-uuid=e2fs
 
 # after extracting PostgreSQL sources, we must patch uuid-ossp so it builds on OSX
+#ossp no longer builds with 9.4.x+, use e2fs-libuuid 
 postgresql-$(POSTGRES_VERSION)/configure: postgresql-$(POSTGRES_VERSION).tar.bz2
 	$(TAR) "postgresql-$(POSTGRES_VERSION).tar.bz2"
-	echo '#define _XOPEN_SOURCE' >"postgresql-$(POSTGRES_VERSION)/contrib/uuid-ossp/uuid-ossp.c.patched"
-	cat "postgresql-$(POSTGRES_VERSION)/contrib/uuid-ossp/uuid-ossp.c" >>"postgresql-$(POSTGRES_VERSION)/contrib/uuid-ossp/uuid-ossp.c.patched"
-	mv "postgresql-$(POSTGRES_VERSION)/contrib/uuid-ossp/uuid-ossp.c.patched" "postgresql-$(POSTGRES_VERSION)/contrib/uuid-ossp/uuid-ossp.c"
-	touch $@
 
 postgresql-$(POSTGRES_VERSION).tar.bz2:
 	$(CURL) "http://ftp.postgresql.org/pub/source/v$(POSTGRES_VERSION)/postgresql-$(POSTGRES_VERSION).tar.bz2"
