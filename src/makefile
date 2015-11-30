@@ -467,7 +467,7 @@ pointcloud: $(PREFIX)/lib/pointcloud.so
 $(PREFIX)/lib/pointcloud.so: pointcloud-${POINTCLOUD_VERSION}/GNUMakefile
 	make -C pointcloud-${POINTCLOUD_VERSION}
 	make -C pointcloud-${POINTCLOUD_VERSION} install
-	
+
 pointcloud-${POINTCLOUD_VERSION}/GNUMakefile: pointcloud-${POINTCLOUD_VERSION}/autogen.sh $(PREFIX)/bin/psql $(PREFIX)/lib/libxml2.dylib #$(PREFIX)/lib/libght.${GHT_VERSION}.dylib
 	cd pointcloud-${POINTCLOUD_VERSION} && ./autogen.sh && ./configure --prefix="$(PREFIX)" --with-pgconfig="$(PREFIX)/bin/pg_config" #--with-libght=${PREFIX}
 	touch $@
