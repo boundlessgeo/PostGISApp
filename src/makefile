@@ -3,9 +3,9 @@
 # VERSION numbers
 POSTGIS_VERSION=2.2.0
 POSTGIS_MAJOR_VERSION=2.2
-POSTGRES_VERSION=9.4.5
+POSTGRES_VERSION=9.3.4
 GDAL_VERSION=1.11.2
-GEOS_VERSION=3.4.2
+GEOS_VERSION=3.5.0
 LIBEDIT_VERSION=20130611-3.1
 LIBUUID_VERSION=1.6.2
 LIBXML2_VERSION=2.9.1
@@ -133,7 +133,6 @@ libxml2: $(PREFIX)/lib/libxml2.dylib
 $(PREFIX)/lib/libxml2.dylib: libxml2-${LIBXML2_VERSION}/Makefile
 	make -j $(CORES) -C libxml2-${LIBXML2_VERSION} install-exec
 	make -C libxml2-${LIBXML2_VERSION}/include install
-	echo $(PREFIX)
 	touch $(PREFIX)/lib/libxml2.dylib
 
 libxml2-${LIBXML2_VERSION}/Makefile: libxml2-${LIBXML2_VERSION}/configure
